@@ -10,8 +10,6 @@ script/source = "extends CanvasItem
 
 const COORDINATE_SYSTEM_SIZE = 50 # * axis_scale
 
-var margin_top = 400
-const margin_left = 80
 const axis_label_length = 10
 
 const axis_scale = 50
@@ -20,8 +18,10 @@ enum MODE {
 	LINEAR,
 	QUAD,
 	SIN,
+	EMPTY
 }
 
+var coordinate_system_center = Vector2.ZERO
 var current_mode = MODE.LINEAR
 var a = 0
 var b = 0
@@ -29,7 +29,7 @@ var c = 0
 var d = 0
 
 func _ready():
-	margin_top = get_parent().get_node(\"Island/Level/Spawn\").position.y
+	pass
 
 
 func draw_linear(a, b):
@@ -59,35 +59,35 @@ func _draw():
 	match current_mode:
 		MODE.LINEAR:
 			for i in range(get_viewport_rect().size.x):
-				draw_line(Vector2(i, a*(i-margin_left)+b+margin_top), Vector2((i+1), a*((i-margin_left)+1)+b+margin_top), ColorN(\"slateblue\"), 2)
+				draw_line(Vector2(i, a*(i-coordinate_system_center.x)+b+coordinate_system_center.y), Vector2((i+1), a*((i-coordinate_system_center.x)+1)+b+coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 		MODE.QUAD:
 			for i in range(get_viewport_rect().size.x):
-				var x = float(i-margin_left+b)/(get_viewport_rect().size.x/axis_scale)*3
-				var x_1 = float(i-margin_left+1+b)/(get_viewport_rect().size.x/axis_scale)*3
-				var y = (a*(x)*(x)+c+margin_top)
-				var y_1 = (a*(x_1)*(x_1)+c+margin_top)
+				var x = float(i-coordinate_system_center.x+b)/(get_viewport_rect().size.x/axis_scale)*3
+				var x_1 = float(i-coordinate_system_center.x+1+b)/(get_viewport_rect().size.x/axis_scale)*3
+				var y = (a*(x)*(x)+c+coordinate_system_center.y)
+				var y_1 = (a*(x_1)*(x_1)+c+coordinate_system_center.y)
 				draw_line(Vector2(i, y), Vector2(i+1, y_1), ColorN(\"slateblue\"), 2)
 				#draw_line(Vector2(i, a*(((i-margin_left)+b)*((i-margin_left)+b))+margin_top), Vector2((i+1), a*(((i-margin_left+1)+b)*((i-margin_left+1)+b)+1)+margin_top), ColorN(\"slateblue\"), 1)
 		MODE.SIN:
 			for i in range(get_viewport_rect().size.x):
-				draw_line(Vector2(i, a*sin(b*2*PI*(i+margin_left)+c)+d+margin_top), Vector2((i+0.5), a*sin(b*2*PI*(i-margin_left+0.5)+c)+d+margin_top), ColorN(\"slateblue\"), 2)
+				draw_line(Vector2(i, a*sin(b*2*PI*(i+coordinate_system_center.x)+c)+d+coordinate_system_center.y), Vector2((i+0.5), a*sin(b*2*PI*(i-coordinate_system_center.x+0.5)+c)+d+coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 	_draw_axis()
 
 
 func _draw_axis():
 	# x line
-	draw_line(Vector2(-COORDINATE_SYSTEM_SIZE * axis_scale + margin_left, margin_top), Vector2(COORDINATE_SYSTEM_SIZE * axis_scale + margin_left, margin_top), ColorN(\"slateblue\"), 2)
+	draw_line(Vector2(-COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), Vector2(COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 	
 	# y line
-	draw_line(Vector2(margin_left, COORDINATE_SYSTEM_SIZE * axis_scale + margin_top), Vector2(margin_left, -COORDINATE_SYSTEM_SIZE * axis_scale + margin_top), ColorN(\"slateblue\"), 2)
+	draw_line(Vector2(coordinate_system_center.x, COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), Vector2(coordinate_system_center.x, -COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 	
 	# x
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		draw_line(Vector2(axis_scale * i + margin_left, margin_top - axis_label_length), Vector2(axis_scale * i + margin_left, margin_top + axis_label_length), ColorN(\"slateblue\"), 2)
+		draw_line(Vector2(axis_scale * i + coordinate_system_center.x, coordinate_system_center.y - axis_label_length), Vector2(axis_scale * i + coordinate_system_center.x, coordinate_system_center.y + axis_label_length), ColorN(\"slateblue\"), 2)
 	
 	# y
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		draw_line(Vector2(margin_left - axis_label_length, axis_scale * i + margin_top), Vector2(margin_left + axis_label_length, axis_scale * i + margin_top), ColorN(\"slateblue\"), 2)
+		draw_line(Vector2(coordinate_system_center.x - axis_label_length, axis_scale * i + coordinate_system_center.y), Vector2(coordinate_system_center.x + axis_label_length, axis_scale * i + coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 "
 
 [node name="InGame" type="Node"]

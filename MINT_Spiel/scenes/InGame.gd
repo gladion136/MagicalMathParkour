@@ -7,6 +7,12 @@ func _ready():
 	var new_level = load("res://level/" + Global.level_res).instance()
 	get_node("Island").add_child(new_level)
 	new_level.current_mode = Global.mode
-	$GUI.level = new_level	
+	$GUI.level = new_level
 	$GUI.update()
+	
+	# Spawn player
+	var player = preload("res://objects/Player.tscn").instance()
+	get_node("Island").add_child(player)
+	player.move_with_coordinate_system(new_level.get_node("Spawn").position)
+	
 
