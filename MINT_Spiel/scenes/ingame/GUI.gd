@@ -13,41 +13,47 @@ onready var selected_mode = MODE.LINEAR
 
 
 func _ready():
-	_on_Button_pressed()
+	pass
 
 func update():
 	select_mode(level.current_mode)
 
-func _on_Button_pressed():
+
+func jump(left):
 	var a = 0
 	var b = 0
 	var c = 0
 	var d = 0
 	match selected_mode:
 		MODE.LINEAR:
-			a = int($Control/Linear/A.text)
-			b = int($Control/Linear/B.text)
+			a = float($Control/Linear/A.text)
+			b = float($Control/Linear/B.text)
 		MODE.QUAD:
-			a = int($Control/Quad/A.text)
-			b = int($Control/Quad/B.text)
-			c = int($Control/Quad/C.text)
+			a = float($Control/Quad/A.text)
+			b = float($Control/Quad/B.text)
+			c = float($Control/Quad/C.text)
 		MODE.SIN:
-			a = int($Control/Sin/A.text)
-			b = int($Control/Sin/B.text)
-			c = int($Control/Sin/C.text)
-			d = int($Control/Sin/D.text)
+			a = float($Control/Sin/A.text)
+			b = float($Control/Sin/B.text)
+			c = float($Control/Sin/C.text)
+			d = float($Control/Sin/D.text)
 	
-	
+	var player = get_parent().get_node("Island/Player")
 	
 	# Input check
 	match selected_mode:
 		MODE.LINEAR:
 			get_parent().get_node("FunctionPreview").draw_linear(a, b)
+			if player != null:
+				player.jump_linear(a, b, left)
 		MODE.QUAD:
 			get_parent().get_node("FunctionPreview").draw_quad(a, b, c)
+			if player != null:
+				player.jump_quad(a, b, c, left)
 		MODE.SIN:
 			get_parent().get_node("FunctionPreview").draw_sin(a, b, c, d)
-	
+			if player != null:
+				player.jump_sin(a, b, c, d, left)
 
 
 func _on_BtnLinear_pressed():
@@ -87,3 +93,11 @@ func select_mode(mode):
 
 func _on_BtnBack_pressed():
 	get_tree().change_scene("res://scenes/Menu.tscn")
+
+
+func _on_BtnJumpL_pressed():
+	jump(true)
+
+
+func _on_BtnJumpR_pressed():
+	jump(false)
