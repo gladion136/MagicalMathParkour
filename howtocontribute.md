@@ -10,11 +10,11 @@
 ```
 4. Neue Branch erstellen
 ```
-    git branch 987/TICKET-NAME
+    git branch feature/987-TICKET-NAME
 ```
 5. Auf dem localen Rechner die Branch wechseln
 ```
-    git checkout 987/TICKET-NAME
+    git checkout feature/987-TICKET-NAME
 ```
 6. Issue bearbeiten, Commits erstellen und Branch hochladen
 ```
