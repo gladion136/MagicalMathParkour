@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ingame/GUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://level/01_01_Linear_Intro.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/InGame.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CanvasItem
+
+var margin_top = 400
+const margin_left = 80
+const axis_label_length = 10
+
+const axis_scale = 50
+
+enum MODE {
+	LINEAR,
+	QUAD,
+	SIN,
+}
+
+var current_mode = MODE.LINEAR
+var a = 0
+var b = 0
+var c = 0
+var d = 0
+
+func _ready():
+	margin_top = get_parent().get_node(\"Island/Level/Spawn\").position.y
+
+
+func draw_linear(a, b):
+	current_mode = MODE.LINEAR
+	self.a = -a
+	self.b = -b * axis_scale
+	update()
+
+func draw_quad(a, b, c):
+	current_mode = MODE.QUAD
+	self.a = -float(a)
+	self.b = -b * axis_scale
+	self.c = -c * axis_scale
+	update()
+
+
+func draw_sin(a, b, c, d):
+	current_mode = MODE.SIN
+	self.a = a
+	self.b = b
+	self.c = -c * axis_scale
+	self.d = -d * axis_scale
+	update()
+
+
+func _draw():
+	match current_mode:
+		MODE.LINEAR:
+			for i in range(get_viewport_rect().size.x):
+				draw_line(Vector2(i, a*(i-margin_left)+b+margin_top), Vector2((i+1), a*((i-margin_left)+1)+b+margin_top), ColorN(\"slateblue\"), 2)
+		MODE.QUAD:
+			for i in range(get_viewport_rect().size.x):
+				var x = float(i-margin_left+b)/(get_viewport_rect().size.x/axis_scale)*3
+				var x_1 = float(i-margin_left+1+b)/(get_viewport_rect().size.x/axis_scale)*3
+				var y = (a*(x)*(x)+c+margin_top)
+				var y_1 = (a*(x_1)*(x_1)+c+margin_top)
+				draw_line(Vector2(i, y), Vector2(i+1, y_1), ColorN(\"slateblue\"), 2)
+				#draw_line(Vector2(i, a*(((i-margin_left)+b)*((i-margin_left)+b))+margin_top), Vector2((i+1), a*(((i-margin_left+1)+b)*((i-margin_left+1)+b)+1)+margin_top), ColorN(\"slateblue\"), 1)
+		MODE.SIN:
+			for i in range(get_viewport_rect().size.x):
+				draw_line(Vector2(i, a*sin(b*2*PI*(i+margin_left)+c)+d+margin_top), Vector2((i+0.5), a*sin(b*2*PI*(i-margin_left+0.5)+c)+d+margin_top), ColorN(\"slateblue\"), 2)
+	_draw_axis()
+
+
+func _draw_axis():
+	draw_line(Vector2(0, margin_top), Vector2(get_viewport_rect().size.x, margin_top), ColorN(\"slateblue\"), 2)
+	draw_line(Vector2(margin_left, 0), Vector2(margin_left, get_viewport_rect().size.y), ColorN(\"slateblue\"), 2)
+	
+	# x
+	for i in range(-margin_left/axis_scale, get_viewport_rect().size.x * 10 / axis_scale - margin_top/axis_scale):
+		draw_line(Vector2(axis_scale * i + margin_left, margin_top - axis_label_length), Vector2(axis_scale * i + margin_left, margin_top + axis_label_length), ColorN(\"slateblue\"), 2)
+	
+	# y
+	for i in range(-margin_top/axis_scale, get_viewport_rect().size.y * 10 / axis_scale - margin_top/axis_scale):
+		draw_line(Vector2(margin_left - axis_label_length, axis_scale * i + margin_top), Vector2(margin_left + axis_label_length, axis_scale * i + margin_top), ColorN(\"slateblue\"), 2)
+"
+
+[node name="InGame" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Island" type="Node2D" parent="."]
+
+[node name="Level" parent="Island" instance=ExtResource( 2 )]
+
+[node name="GUI" parent="." instance=ExtResource( 1 )]
+
+[node name="FunctionPreview" type="Node2D" parent="."]
+script = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 344 )
+current = true
+limit_left = 0
+limit_top = -1000000000
+limit_bottom = 600

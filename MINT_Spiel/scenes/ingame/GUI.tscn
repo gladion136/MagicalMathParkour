@@ -1,0 +1,305 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ingame/GUI.gd" type="Script" id=1]
+
+[node name="GUI" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnBack" type="Button" parent="Control"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 107.0
+margin_bottom = 28.0
+text = "Back to Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Linear" type="HBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -166.0
+margin_top = -40.0
+margin_right = 166.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Linear"]
+margin_top = 13.0
+margin_right = 27.0
+margin_bottom = 27.0
+text = "f(x)="
+
+[node name="A" type="LineEdit" parent="Control/Linear"]
+margin_left = 31.0
+margin_right = 140.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control/Linear"]
+margin_left = 144.0
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 27.0
+text = "*x +"
+
+[node name="B" type="LineEdit" parent="Control/Linear"]
+margin_left = 175.0
+margin_right = 284.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Control/Linear"]
+margin_left = 288.0
+margin_right = 332.0
+margin_bottom = 40.0
+size_flags_vertical = 3
+text = "Jump"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quad" type="HBoxContainer" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -166.0
+margin_top = -40.0
+margin_right = 166.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Quad"]
+margin_top = 13.0
+margin_right = 27.0
+margin_bottom = 27.0
+text = "f(x)="
+
+[node name="A" type="LineEdit" parent="Control/Quad"]
+margin_left = 31.0
+margin_right = 92.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control/Quad"]
+margin_left = 96.0
+margin_top = 13.0
+margin_right = 127.0
+margin_bottom = 27.0
+text = "*(x +"
+
+[node name="B" type="LineEdit" parent="Control/Quad"]
+margin_left = 131.0
+margin_right = 193.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control/Quad"]
+margin_left = 197.0
+margin_top = 13.0
+margin_right = 218.0
+margin_bottom = 27.0
+text = ")² +"
+
+[node name="C" type="LineEdit" parent="Control/Quad"]
+margin_left = 222.0
+margin_right = 284.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Control/Quad"]
+margin_left = 288.0
+margin_right = 332.0
+margin_bottom = 40.0
+size_flags_vertical = 3
+text = "Jump"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sin" type="HBoxContainer" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -267.0
+margin_top = -40.0
+margin_right = 267.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Sin"]
+margin_top = 13.0
+margin_right = 27.0
+margin_bottom = 27.0
+text = "f(x)="
+
+[node name="A" type="LineEdit" parent="Control/Sin"]
+margin_left = 31.0
+margin_right = 120.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "50"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control/Sin"]
+margin_left = 124.0
+margin_top = 13.0
+margin_right = 155.0
+margin_bottom = 27.0
+text = "*sin("
+
+[node name="B" type="LineEdit" parent="Control/Sin"]
+margin_left = 159.0
+margin_right = 248.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Control/Sin"]
+margin_left = 252.0
+margin_top = 13.0
+margin_right = 279.0
+margin_bottom = 27.0
+text = "*x +"
+
+[node name="C" type="LineEdit" parent="Control/Sin"]
+margin_left = 283.0
+margin_right = 372.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Control/Sin"]
+margin_left = 376.0
+margin_top = 13.0
+margin_right = 392.0
+margin_bottom = 27.0
+text = ") +"
+
+[node name="D" type="LineEdit" parent="Control/Sin"]
+margin_left = 396.0
+margin_right = 486.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "2"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Control/Sin"]
+margin_left = 490.0
+margin_right = 534.0
+margin_bottom = 40.0
+size_flags_vertical = 3
+text = "Jump"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ModeSelection" type="VBoxContainer" parent="Control"]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -34.0
+margin_right = 90.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnLinear" type="Button" parent="Control/ModeSelection"]
+margin_right = 74.0
+margin_bottom = 20.0
+text = "Linear"
+
+[node name="BtnQuad" type="Button" parent="Control/ModeSelection"]
+margin_top = 24.0
+margin_right = 74.0
+margin_bottom = 44.0
+text = "Quadratic"
+
+[node name="BtnSin" type="Button" parent="Control/ModeSelection"]
+margin_top = 48.0
+margin_right = 74.0
+margin_bottom = 68.0
+text = "Sin"
+
+[connection signal="pressed" from="Control/BtnBack" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="Control/Linear/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Control/Quad/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Control/Sin/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Control/ModeSelection/BtnLinear" to="." method="_on_BtnLinear_pressed"]
+[connection signal="pressed" from="Control/ModeSelection/BtnQuad" to="." method="_on_BtnQuad_pressed"]
+[connection signal="pressed" from="Control/ModeSelection/BtnSin" to="." method="_on_BtnSin_pressed"]
