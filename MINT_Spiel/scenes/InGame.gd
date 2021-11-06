@@ -1,4 +1,5 @@
-extends Node2D
+extends Node
+
 
 func _ready():
 	for child in get_node("Island").get_children():
