@@ -109,7 +109,7 @@ text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Quad"]
 margin_left = 31.0
-margin_right = 92.0
+margin_right = 89.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -121,15 +121,15 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Control/Quad"]
-margin_left = 96.0
+margin_left = 93.0
 margin_top = 13.0
-margin_right = 127.0
+margin_right = 124.0
 margin_bottom = 27.0
 text = "*(x +"
 
 [node name="B" type="LineEdit" parent="Control/Quad"]
-margin_left = 131.0
-margin_right = 193.0
+margin_left = 128.0
+margin_right = 186.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -141,15 +141,15 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Control/Quad"]
-margin_left = 197.0
+margin_left = 190.0
 margin_top = 13.0
-margin_right = 218.0
+margin_right = 211.0
 margin_bottom = 27.0
 text = ")² +"
 
 [node name="C" type="LineEdit" parent="Control/Quad"]
-margin_left = 222.0
-margin_right = 284.0
+margin_left = 215.0
+margin_right = 273.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -161,8 +161,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Quad"]
-margin_left = 346.0
-margin_right = 418.0
+margin_left = 277.0
+margin_right = 349.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 text = "Jump Left"
@@ -171,8 +171,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Quad"]
-margin_left = 422.0
-margin_right = 502.0
+margin_left = 353.0
+margin_right = 433.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 text = "Jump Right"
@@ -201,11 +201,11 @@ text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Sin"]
 margin_left = 31.0
-margin_right = 120.0
+margin_right = 89.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "50"
+text = "1"
 caret_blink = true
 caret_blink_speed = 0.5
 __meta__ = {
@@ -213,15 +213,15 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Control/Sin"]
-margin_left = 124.0
+margin_left = 93.0
 margin_top = 13.0
-margin_right = 155.0
+margin_right = 161.0
 margin_bottom = 27.0
-text = "*sin("
+text = "*sin(2*PI*"
 
 [node name="B" type="LineEdit" parent="Control/Sin"]
-margin_left = 159.0
-margin_right = 248.0
+margin_left = 165.0
+margin_right = 223.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -233,15 +233,15 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="Control/Sin"]
-margin_left = 252.0
+margin_left = 227.0
 margin_top = 13.0
-margin_right = 279.0
+margin_right = 254.0
 margin_bottom = 27.0
 text = "*x +"
 
 [node name="C" type="LineEdit" parent="Control/Sin"]
-margin_left = 283.0
-margin_right = 372.0
+margin_left = 258.0
+margin_right = 316.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -253,15 +253,15 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Control/Sin"]
-margin_left = 376.0
+margin_left = 320.0
 margin_top = 13.0
-margin_right = 392.0
+margin_right = 336.0
 margin_bottom = 27.0
 text = ") +"
 
 [node name="D" type="LineEdit" parent="Control/Sin"]
-margin_left = 396.0
-margin_right = 486.0
+margin_left = 340.0
+margin_right = 398.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -273,8 +273,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Sin"]
-margin_left = 346.0
-margin_right = 418.0
+margin_left = 402.0
+margin_right = 474.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 text = "Jump Left"
@@ -283,8 +283,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Sin"]
-margin_left = 422.0
-margin_right = 502.0
+margin_left = 478.0
+margin_right = 558.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 text = "Jump Right"
@@ -324,10 +324,10 @@ text = "Sin"
 [connection signal="pressed" from="Control/BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="Control/Linear/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
 [connection signal="pressed" from="Control/Linear/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
-[connection signal="pressed" from="Control/Quad/BtnJumpL" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Control/Quad/BtnJumpR" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Control/Sin/BtnJumpL" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Control/Sin/BtnJumpR" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Control/Quad/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
+[connection signal="pressed" from="Control/Quad/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
+[connection signal="pressed" from="Control/Sin/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
+[connection signal="pressed" from="Control/Sin/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
 [connection signal="pressed" from="Control/ModeSelection/BtnLinear" to="." method="_on_BtnLinear_pressed"]
 [connection signal="pressed" from="Control/ModeSelection/BtnQuad" to="." method="_on_BtnQuad_pressed"]
 [connection signal="pressed" from="Control/ModeSelection/BtnSin" to="." method="_on_BtnSin_pressed"]

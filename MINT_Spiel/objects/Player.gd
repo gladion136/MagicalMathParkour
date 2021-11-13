@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-const axis_scale = 503
+const axis_scale = 50
 const FALL_SPEED = 400
-const FLY_SPEED = 6
+const FLY_SPEED = 400
 
 enum MODE {
 	LINEAR,
@@ -12,6 +12,7 @@ enum MODE {
 
 enum STATE {
 	IDLE,
+	FLY_UP,
 	FLY,
 	FALL
 }
@@ -25,6 +26,8 @@ var c = 0
 var d = 0
 var x = 0
 var invert = false
+var y_zero = 0 # y pos on zero
+
 
 func _ready():
 	$AnimationPlayer.play("Idle")
@@ -35,13 +38,24 @@ func _physics_process(delta):
 	match current_state:
 		STATE.IDLE:
 			pass
+		STATE.FLY_UP:
+			var target = Vector2(0, y_zero * axis_scale + coordinate_system_center.y - self.position.y)
+			if target.length() <= FLY_SPEED/100:
+				set_current_state(STATE.FLY)
+			else:
+				var velocity = target.normalized() * FLY_SPEED * delta
+				if move_and_collide(velocity):
+					set_current_state(STATE.FALL)
 		STATE.FLY:
 			_move_with_function(delta)
 		STATE.FALL:
-			if not _better_move(Vector2(0,delta*FALL_SPEED)):
+			if move_and_collide(Vector2(0,delta*FALL_SPEED)):
 				set_current_state(STATE.IDLE)
 
 
+"""
+	Set current state and update properties to it
+"""
 func set_current_state(state):
 	current_state = state
 	match current_state:
@@ -51,117 +65,113 @@ func set_current_state(state):
 			var function_preview = get_tree().get_root().get_node("InGame/FunctionPreview")
 			function_preview.current_mode = function_preview.MODE.EMPTY
 			function_preview.update()
+		STATE.FLY_UP:
+			$AnimationPlayer.play("Fly")
 		STATE.FLY:
 			$AnimationPlayer.play("Fly")
 		STATE.FALL:
 			$AnimationPlayer.play("Fall")
+		
 
+
+"""
+	Move player with coordinate system together
+"""
 func move_with_coordinate_system(pos):
 	self.position = pos
 	move_coordinate_system(pos)
 
 
+"""
+	Move coordinate system and redraw it
+"""
 func move_coordinate_system(pos):
-	print("Move system")
 	coordinate_system_center = pos
 	# redraw
 	get_tree().get_root().get_node("InGame/FunctionPreview").coordinate_system_center = pos
 	get_tree().get_root().get_node("InGame/FunctionPreview").update()
 
 
+"""
+	Start jumping linear
+"""
 func jump_linear(a, b, left):
-	x = 0
-	self.a = a
-	self.b = b
-	if invert != left:
-		$Sprite.flip_h = not $Sprite.flip_h
-	invert = left
-	current_mode = MODE.LINEAR
-	set_current_state(STATE.FLY)
-	$AnimationPlayer.play("Jump")
-
-
-func jump_quad(a, b, c, left):
-	x = 0
-	self.a = a
-	self.b = b
-	self.c = c
-	if invert != left:
-		$Sprite.flip_h = not $Sprite.flip_h
-	invert = left
-	current_mode = MODE.QUAD
-	set_current_state(STATE.FLY)
-	$AnimationPlayer.play("Jump")
-
-
-func jump_sin(a, b, c, d, left):
-	x = 0
-	self.a = a
-	self.b = b
-	self.c = c
-	self.d = d
-	if invert != left:
-		$Sprite.flip_h = not $Sprite.flip_h
+	if current_state == STATE.IDLE:
+		print("Jump linear")
+		x = 0
+		self.a = -a
+		self.b = -b
+		self.y_zero = self.b
+		$Sprite.flip_h = left
 		invert = left
-	current_mode = MODE.SIN
-	set_current_state(STATE.FLY)
-	$AnimationPlayer.play("Jump")
+		current_mode = MODE.LINEAR
+		set_current_state(STATE.FLY_UP)
 
 
+"""
+	Start jumping quadratic
+"""
+func jump_quad(a, b, c, left):
+	if current_state == STATE.IDLE:
+		print("Jump quad")
+		x = 0
+		self.a = -a
+		self.b = b
+		self.c = -c
+		self.y_zero = self.c
+		$Sprite.flip_h = left
+		invert = left
+		current_mode = MODE.QUAD
+		set_current_state(STATE.FLY_UP)
+
+
+"""
+	Start jumping sinus
+"""
+func jump_sin(a, b, c, d, left):
+	if current_state == STATE.IDLE:
+		print("Jump sin")
+		x = 0
+		self.a = -a
+		self.b = b
+		self.c = c
+		self.d = -d
+		self.y_zero = self.a*sin(self.b*2*PI*self.c)+self.d
+		$Sprite.flip_h = left
+		invert = left
+		current_mode = MODE.SIN
+		set_current_state(STATE.FLY_UP)
+
+
+"""
+	Move the player along the current function
+"""
 func _move_with_function(delta):
 	var x_cur = (self.position.x - coordinate_system_center.x) / axis_scale
 	var x_next = x_cur
 	if invert:
-		x_next -= 3 * delta
+		x_next -= FLY_SPEED/10 * delta
 	else:
-		x_next += 3 * delta
+		x_next += FLY_SPEED/10 * delta
 	match current_mode:
 		MODE.LINEAR:
-			var y_n = -(a*x_next) * axis_scale + -b * axis_scale/10 + coordinate_system_center.y
-			var x_n = (coordinate_system_center.x+x_next*axis_scale)
-			print(Vector2(x_n,y_n))
-			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED
-			print(velocity)
-			if not _better_move(velocity):
-				$AnimationPlayer.play("Idle")
+			var y = (a*x_next) + b
+			var y_n = y * axis_scale + coordinate_system_center.y - 1
+			var x_n = x_next * axis_scale + coordinate_system_center.x
+			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
+			if move_and_collide(velocity):
 				set_current_state(STATE.FALL)
 		MODE.QUAD:
-			pass
-#				var x = float(i-coordinate_system_center.x+b)/(get_viewport_rect().size.x/axis_scale)*3
-#				var x_1 = float(i-coordinate_system_center.x+1+b)/(get_viewport_rect().size.x/axis_scale)*3
-#				var y = (a*(x)*(x)+c+coordinate_system_center.y)
-#				var y_1 = (a*(x_1)*(x_1)+c+coordinate_system_center.y)
-#				draw_line(Vector2(i, y), Vector2(i+1, y_1), ColorN("slateblue"), 2)
-				#draw_line(Vector2(i, a*(((i-margin_left)+b)*((i-margin_left)+b))+margin_top), Vector2((i+1), a*(((i-margin_left+1)+b)*((i-margin_left+1)+b)+1)+margin_top), ColorN("slateblue"), 1)
+			var y = a*(b+x_next)*(b+x_next) + c
+			var y_n = y * axis_scale + coordinate_system_center.y - 1
+			var x_n = x_next * axis_scale + coordinate_system_center.x
+			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
+			if move_and_collide(velocity):
+				set_current_state(STATE.FALL)
 		MODE.SIN:
-			pass
-#			for i in range(get_viewport_rect().size.x):
-#				draw_line(Vector2(i, a*sin(b*2*PI*(i+coordinate_system_center.x)+c)+d+coordinate_system_center.y), Vector2((i+0.5), a*sin(b*2*PI*(i-coordinate_system_center.x+0.5)+c)+d+coordinate_system_center.y), ColorN("slateblue"), 2)
-
-
-"""
-	Move the player along the given velocity. WARNING: Function changes self.position
-	Input: Vector2
-	Return: Not collided? (boolean)
-"""
-func _better_move(_velocity: Vector2):
-	var _velocity_x = Vector2(_velocity.x, 0)
-	var _velocity_y = Vector2(0, _velocity.y)
-
-	if _velocity == Vector2.ZERO:
-		return true
-
-	var _vel_collide = move_and_collide(_velocity, true, true, true)
-	if not _vel_collide:
-		self.position += _velocity
-		return true
-
-	var _vel_y_collide = move_and_collide(_velocity_y, true, true, true)
-	if not _vel_y_collide:
-		self.position += _velocity_y
-
-	var _vel_x_collide = move_and_collide(_velocity_x, true, true, true)
-	if not _vel_x_collide:
-		self.position += _velocity_x
-	return false
-
+			var y = a*sin(b*2*PI*(x_next+c))+d
+			var y_n = y * axis_scale + coordinate_system_center.y - 1
+			var x_n = x_next * axis_scale + coordinate_system_center.x
+			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
+			if move_and_collide(velocity):
+				set_current_state(STATE.FALL)

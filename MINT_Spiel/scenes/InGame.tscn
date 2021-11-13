@@ -8,7 +8,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasItem
 
-const COORDINATE_SYSTEM_SIZE = 50 # * axis_scale
+const COORDINATE_SYSTEM_SIZE = 50 # * axis_scale to get pixel
 
 const axis_label_length = 10
 
@@ -28,6 +28,7 @@ var b = 0
 var c = 0
 var d = 0
 
+
 func _ready():
 	pass
 
@@ -35,42 +36,56 @@ func _ready():
 func draw_linear(a, b):
 	current_mode = MODE.LINEAR
 	self.a = -a
-	self.b = -b * axis_scale
+	self.b = -b
 	update()
+
 
 func draw_quad(a, b, c):
 	current_mode = MODE.QUAD
-	self.a = -float(a)
-	self.b = -b * axis_scale
-	self.c = -c * axis_scale
+	self.a = -a
+	self.b = -b
+	self.c = -c
 	update()
 
 
 func draw_sin(a, b, c, d):
 	current_mode = MODE.SIN
-	self.a = a
+	self.a = -a
 	self.b = b
-	self.c = -c * axis_scale
-	self.d = -d * axis_scale
+	self.c = c
+	self.d = -d
 	update()
 
 
 func _draw():
 	match current_mode:
 		MODE.LINEAR:
-			for i in range(get_viewport_rect().size.x):
-				draw_line(Vector2(i, a*(i-coordinate_system_center.x)+b+coordinate_system_center.y), Vector2((i+1), a*((i-coordinate_system_center.x)+1)+b+coordinate_system_center.y), ColorN(\"slateblue\"), 2)
+			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
+				var x = float(i) / axis_scale
+				var x_n = float(i) / axis_scale + 1.0/axis_scale
+				var y = a * x + b
+				var y_n = a * x_n + b
+				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
+				var on_map_n = Vector2(x_n * axis_scale + coordinate_system_center.x, y_n * axis_scale + coordinate_system_center.y)
+				draw_line(on_map, on_map_n, ColorN(\"slateblue\"), 2)
 		MODE.QUAD:
-			for i in range(get_viewport_rect().size.x):
-				var x = float(i-coordinate_system_center.x+b)/(get_viewport_rect().size.x/axis_scale)*3
-				var x_1 = float(i-coordinate_system_center.x+1+b)/(get_viewport_rect().size.x/axis_scale)*3
-				var y = (a*(x)*(x)+c+coordinate_system_center.y)
-				var y_1 = (a*(x_1)*(x_1)+c+coordinate_system_center.y)
-				draw_line(Vector2(i, y), Vector2(i+1, y_1), ColorN(\"slateblue\"), 2)
-				#draw_line(Vector2(i, a*(((i-margin_left)+b)*((i-margin_left)+b))+margin_top), Vector2((i+1), a*(((i-margin_left+1)+b)*((i-margin_left+1)+b)+1)+margin_top), ColorN(\"slateblue\"), 1)
+			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
+				var x = float(i) / axis_scale
+				var x_n = float(i) / axis_scale + 1.0/axis_scale
+				var y = a * (x + b)*(x + b) + c
+				var y_n = a * (x_n + b)*(x_n + b) + c
+				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
+				var on_map_n = Vector2(x_n * axis_scale + coordinate_system_center.x, y_n * axis_scale + coordinate_system_center.y)
+				draw_line(on_map, on_map_n, ColorN(\"slateblue\"), 2)
 		MODE.SIN:
-			for i in range(get_viewport_rect().size.x):
-				draw_line(Vector2(i, a*sin(b*2*PI*(i+coordinate_system_center.x)+c)+d+coordinate_system_center.y), Vector2((i+0.5), a*sin(b*2*PI*(i-coordinate_system_center.x+0.5)+c)+d+coordinate_system_center.y), ColorN(\"slateblue\"), 2)
+			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
+				var x = float(i) / axis_scale
+				var x_n = float(i) / axis_scale + 1.0/axis_scale
+				var y = a*sin(b*2*PI*(x+c))+d
+				var y_n = a*sin(b*2*PI*(x_n+c))+d
+				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
+				var on_map_n = Vector2(x_n * axis_scale + coordinate_system_center.x, y_n * axis_scale + coordinate_system_center.y)
+				draw_line(on_map, on_map_n, ColorN(\"slateblue\"), 2)
 	_draw_axis()
 
 
