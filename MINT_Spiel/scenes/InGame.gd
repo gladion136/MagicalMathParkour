@@ -13,6 +13,8 @@ func _ready():
 	# Spawn player
 	var player = preload("res://objects/Player.tscn").instance()
 	get_node("Island").add_child(player)
+	player.gui = $GUI
+	player.set_remaining_jumps(new_level.amount_jumps + 1)
 	player.move_with_coordinate_system(new_level.get_node("Spawn").position)
 	
 

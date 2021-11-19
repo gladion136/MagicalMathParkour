@@ -27,6 +27,8 @@ var d = 0
 var x = 0
 var invert = false
 var y_zero = 0 # y pos on zero
+var jumps_remaining
+var gui
 
 
 func _ready():
@@ -60,6 +62,7 @@ func set_current_state(state):
 	current_state = state
 	match current_state:
 		STATE.IDLE:
+			set_remaining_jumps(jumps_remaining - 1)
 			$AnimationPlayer.play("Idle")
 			move_coordinate_system(self.position)
 			var function_preview = get_tree().get_root().get_node("InGame/FunctionPreview")
@@ -175,3 +178,9 @@ func _move_with_function(delta):
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
 			if move_and_collide(velocity):
 				set_current_state(STATE.FALL)
+
+func set_remaining_jumps(jumps):
+	jumps_remaining = jumps
+	gui.set_remaining_jumps_label(jumps)
+	if jumps <= 0:
+		gui.on_game_over()
