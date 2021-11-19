@@ -101,3 +101,13 @@ func _on_BtnJumpL_pressed():
 
 func _on_BtnJumpR_pressed():
 	jump(false)
+	
+func set_remaining_jumps_label(remaining_jumps):
+	$JumpsRemainig.text = "Sprünge übrig: " + str(remaining_jumps)
+
+func on_game_over():
+	$GameOverScreen.visible = true
+
+
+func _on_TryAgainBtn_pressed():
+	get_tree().reload_current_scene()

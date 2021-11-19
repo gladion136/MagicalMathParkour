@@ -321,6 +321,76 @@ margin_right = 74.0
 margin_bottom = 68.0
 text = "Sin"
 
+[node name="JumpsRemainig" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -113.0
+margin_top = 14.0
+margin_right = -10.0
+margin_bottom = 29.0
+text = "Sprünge übrig: 5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.0196078, 0.0196078, 0.2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOverScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -183.0
+margin_top = -117.0
+margin_right = -110.0
+margin_bottom = -103.0
+rect_scale = Vector2( 5, 5 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -78.5
+margin_top = -22.0
+margin_right = 78.5
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgainBtn" type="Button" parent="GameOverScreen/VBoxContainer"]
+margin_right = 157.0
+margin_bottom = 20.0
+text = "Erneut Versuchen"
+
+[node name="BackToMenuBtn" type="Button" parent="GameOverScreen/VBoxContainer"]
+margin_top = 24.0
+margin_right = 157.0
+margin_bottom = 44.0
+text = "zurück zum Hautmenü"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Control/BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="Control/Linear/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
 [connection signal="pressed" from="Control/Linear/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
@@ -331,3 +401,5 @@ text = "Sin"
 [connection signal="pressed" from="Control/ModeSelection/BtnLinear" to="." method="_on_BtnLinear_pressed"]
 [connection signal="pressed" from="Control/ModeSelection/BtnQuad" to="." method="_on_BtnQuad_pressed"]
 [connection signal="pressed" from="Control/ModeSelection/BtnSin" to="." method="_on_BtnSin_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]
