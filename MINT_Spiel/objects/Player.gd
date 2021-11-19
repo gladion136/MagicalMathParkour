@@ -121,7 +121,7 @@ func jump_quad(a, b, c, left):
 		self.a = -a
 		self.b = b
 		self.c = -c
-		self.y_zero = self.c
+		self.y_zero = self.a*(self.b)*(self.b) + self.c
 		$Sprite.flip_h = left
 		invert = left
 		current_mode = MODE.QUAD
