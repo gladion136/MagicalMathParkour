@@ -7,11 +7,13 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasItem
 
-const COORDINATE_SYSTEM_SIZE = 50 # * axis_scale to get pixel
+const COORDINATE_SYSTEM_SIZE = 200 # * axis_scale to get pixel
 
 const axis_label_length = 10
 
 const axis_scale = 50
+
+const stroke_width = 20
 
 enum MODE {
 	LINEAR,
@@ -57,51 +59,61 @@ func draw_sin(a, b, c, d):
 
 
 func _draw():
+	print(\"called\")
+	var vector_array = []
 	match current_mode:
 		MODE.LINEAR:
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
-				var x_n = float(i) / axis_scale + 1.0/axis_scale
 				var y = a * x + b
-				var y_n = a * x_n + b
 				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
-				var on_map_n = Vector2(x_n * axis_scale + coordinate_system_center.x, y_n * axis_scale + coordinate_system_center.y)
-				draw_line(on_map, on_map_n, ColorN(\"slateblue\"), 2)
+				vector_array.append(on_map)
+			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
+				
 		MODE.QUAD:
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
-				var x_n = float(i) / axis_scale + 1.0/axis_scale
 				var y = a * (x + b)*(x + b) + c
-				var y_n = a * (x_n + b)*(x_n + b) + c
 				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
-				var on_map_n = Vector2(x_n * axis_scale + coordinate_system_center.x, y_n * axis_scale + coordinate_system_center.y)
-				draw_line(on_map, on_map_n, ColorN(\"slateblue\"), 2)
+				vector_array.append(on_map)
+			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 		MODE.SIN:
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
-				var x_n = float(i) / axis_scale + 1.0/axis_scale
 				var y = a*sin(b*2*PI*(x+c))+d
-				var y_n = a*sin(b*2*PI*(x_n+c))+d
 				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
-				var on_map_n = Vector2(x_n * axis_scale + coordinate_system_center.x, y_n * axis_scale + coordinate_system_center.y)
-				draw_line(on_map, on_map_n, ColorN(\"slateblue\"), 2)
+				vector_array.append(on_map)
+			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 	_draw_axis()
 
 
 func _draw_axis():
 	# x line
-	draw_line(Vector2(-COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), Vector2(COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), ColorN(\"slateblue\"), 2)
+	#draw_line(Vector2(-COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), Vector2(COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 	
 	# y line
-	draw_line(Vector2(coordinate_system_center.x, COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), Vector2(coordinate_system_center.x, -COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), ColorN(\"slateblue\"), 2)
+	#draw_line(Vector2(coordinate_system_center.x, COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), Vector2(coordinate_system_center.x, -COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), ColorN(\"slateblue\"), 2)
 	
-	# x
+	# x-Axis
+	var vector_array = []
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		draw_line(Vector2(axis_scale * i + coordinate_system_center.x, coordinate_system_center.y - axis_label_length), Vector2(axis_scale * i + coordinate_system_center.x, coordinate_system_center.y + axis_label_length), ColorN(\"slateblue\"), 2)
+		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x - axis_scale, coordinate_system_center.y))
+		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y))
+		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y - axis_label_length))
+		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y + axis_label_length))
+		
+	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
+	#draw_polyline(vector_array, ColorN(\"slateblue\"), 2)
 	
-	# y
+	# y-Axis
+	vector_array = []
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		draw_line(Vector2(coordinate_system_center.x - axis_label_length, axis_scale * i + coordinate_system_center.y), Vector2(coordinate_system_center.x + axis_label_length, axis_scale * i + coordinate_system_center.y), ColorN(\"slateblue\"), 2)
+		vector_array.append(Vector2(coordinate_system_center.x, axis_scale*i + coordinate_system_center.y - axis_scale))
+		vector_array.append(Vector2(coordinate_system_center.x, axis_scale*i + coordinate_system_center.y))
+		vector_array.append(Vector2(coordinate_system_center.x -axis_label_length, axis_scale*i + coordinate_system_center.y))
+		vector_array.append(Vector2(coordinate_system_center.x +axis_label_length, axis_scale*i + coordinate_system_center.y))
+	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
+	
 "
 
 [node name="InGame" type="Node"]
