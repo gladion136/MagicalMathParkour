@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/ingame/GUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/big_title.tres" type="DynamicFont" id=3]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -17,7 +19,8 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 107.0
 margin_bottom = 28.0
-text = "Back to Menu"
+custom_fonts/font = ExtResource( 2 )
+text = "Zurück zum Hauptmenü"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,32 +30,35 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -166.0
+margin_left = -213.5
 margin_top = -40.0
-margin_right = 166.0
+margin_right = 213.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Control/Linear"]
-margin_top = 13.0
-margin_right = 27.0
-margin_bottom = 27.0
+margin_top = 10.0
+margin_right = 30.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Linear"]
-margin_left = 31.0
-margin_right = 89.0
+margin_left = 34.0
+margin_right = 92.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "1"
 
 [node name="Label2" type="Label" parent="Control/Linear"]
-margin_left = 93.0
-margin_top = 13.0
+margin_left = 96.0
+margin_top = 10.0
 margin_right = 120.0
-margin_bottom = 27.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "*x +"
 
 [node name="B" type="LineEdit" parent="Control/Linear"]
@@ -61,6 +67,7 @@ margin_right = 182.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -70,20 +77,22 @@ __meta__ = {
 
 [node name="BtnJumpL" type="Button" parent="Control/Linear"]
 margin_left = 186.0
-margin_right = 258.0
+margin_right = 298.0
 margin_bottom = 40.0
 size_flags_vertical = 3
-text = "Jump Left"
+custom_fonts/font = ExtResource( 2 )
+text = "Sprung: Links"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Linear"]
-margin_left = 262.0
-margin_right = 342.0
+margin_left = 302.0
+margin_right = 427.0
 margin_bottom = 40.0
 size_flags_vertical = 3
-text = "Jump Right"
+custom_fonts/font = ExtResource( 2 )
+text = "Sprung: Rechts"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,25 +103,27 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -166.0
+margin_left = -260.0
 margin_top = -40.0
-margin_right = 166.0
+margin_right = 260.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Control/Quad"]
-margin_top = 13.0
-margin_right = 27.0
-margin_bottom = 27.0
+margin_top = 10.0
+margin_right = 30.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Quad"]
-margin_left = 31.0
-margin_right = 89.0
+margin_left = 34.0
+margin_right = 92.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "1"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -121,18 +132,20 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Control/Quad"]
-margin_left = 93.0
-margin_top = 13.0
-margin_right = 124.0
-margin_bottom = 27.0
+margin_left = 96.0
+margin_top = 10.0
+margin_right = 125.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "*(x +"
 
 [node name="B" type="LineEdit" parent="Control/Quad"]
-margin_left = 128.0
-margin_right = 186.0
+margin_left = 129.0
+margin_right = 187.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -141,18 +154,20 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Control/Quad"]
-margin_left = 190.0
-margin_top = 13.0
-margin_right = 211.0
-margin_bottom = 27.0
+margin_left = 191.0
+margin_top = 10.0
+margin_right = 213.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = ")² +"
 
 [node name="C" type="LineEdit" parent="Control/Quad"]
-margin_left = 215.0
-margin_right = 273.0
+margin_left = 217.0
+margin_right = 275.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -161,21 +176,23 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Quad"]
-margin_left = 277.0
-margin_right = 349.0
+margin_left = 279.0
+margin_right = 391.0
 margin_bottom = 40.0
 size_flags_vertical = 3
-text = "Jump Left"
+custom_fonts/font = ExtResource( 2 )
+text = "Sprung: Links"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Quad"]
-margin_left = 353.0
-margin_right = 433.0
+margin_left = 395.0
+margin_right = 520.0
 margin_bottom = 40.0
 size_flags_vertical = 3
-text = "Jump Right"
+custom_fonts/font = ExtResource( 2 )
+text = "Sprung: Rechts"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -186,25 +203,27 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -267.0
+margin_left = -320.0
 margin_top = -40.0
-margin_right = 267.0
+margin_right = 320.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Control/Sin"]
-margin_top = 13.0
-margin_right = 27.0
-margin_bottom = 27.0
+margin_top = 10.0
+margin_right = 30.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Sin"]
-margin_left = 31.0
-margin_right = 89.0
+margin_left = 34.0
+margin_right = 92.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "1"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -213,10 +232,11 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Control/Sin"]
-margin_left = 93.0
-margin_top = 13.0
+margin_left = 96.0
+margin_top = 10.0
 margin_right = 161.0
-margin_bottom = 27.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "*sin(2*PI*"
 
 [node name="B" type="LineEdit" parent="Control/Sin"]
@@ -225,6 +245,7 @@ margin_right = 223.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "1"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -234,17 +255,19 @@ __meta__ = {
 
 [node name="Label4" type="Label" parent="Control/Sin"]
 margin_left = 227.0
-margin_top = 13.0
-margin_right = 254.0
-margin_bottom = 27.0
+margin_top = 10.0
+margin_right = 251.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = "*x +"
 
 [node name="C" type="LineEdit" parent="Control/Sin"]
-margin_left = 258.0
-margin_right = 316.0
+margin_left = 255.0
+margin_right = 313.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -253,18 +276,20 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Control/Sin"]
-margin_left = 320.0
-margin_top = 13.0
-margin_right = 336.0
-margin_bottom = 27.0
+margin_left = 317.0
+margin_top = 10.0
+margin_right = 333.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
 text = ") +"
 
 [node name="D" type="LineEdit" parent="Control/Sin"]
-margin_left = 340.0
-margin_right = 398.0
+margin_left = 337.0
+margin_right = 395.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 text = "2"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -273,21 +298,23 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Sin"]
-margin_left = 402.0
-margin_right = 474.0
+margin_left = 399.0
+margin_right = 511.0
 margin_bottom = 40.0
 size_flags_vertical = 3
-text = "Jump Left"
+custom_fonts/font = ExtResource( 2 )
+text = "Sprung: Links"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Sin"]
-margin_left = 478.0
-margin_right = 558.0
+margin_left = 515.0
+margin_right = 640.0
 margin_bottom = 40.0
 size_flags_vertical = 3
-text = "Jump Right"
+custom_fonts/font = ExtResource( 2 )
+text = "Sprung: Rechts"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -297,37 +324,41 @@ visible = false
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 16.0
-margin_top = -34.0
-margin_right = 90.0
-margin_bottom = 34.0
+margin_top = -41.5
+margin_right = 102.0
+margin_bottom = 41.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BtnLinear" type="Button" parent="Control/ModeSelection"]
-margin_right = 74.0
-margin_bottom = 20.0
+margin_right = 103.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
 text = "Linear"
 
 [node name="BtnQuad" type="Button" parent="Control/ModeSelection"]
-margin_top = 24.0
-margin_right = 74.0
-margin_bottom = 44.0
-text = "Quadratic"
+margin_top = 29.0
+margin_right = 103.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 2 )
+text = "Quadratisch"
 
 [node name="BtnSin" type="Button" parent="Control/ModeSelection"]
-margin_top = 48.0
-margin_right = 74.0
-margin_bottom = 68.0
-text = "Sin"
+margin_top = 58.0
+margin_right = 103.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sinus"
 
 [node name="JumpsRemainig" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -113.0
+margin_left = -137.0
 margin_top = 14.0
-margin_right = -10.0
-margin_bottom = 29.0
+margin_right = -13.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
 text = "Sprünge übrig: 5"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -354,11 +385,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -183.0
-margin_top = -117.0
-margin_right = -110.0
-margin_bottom = -103.0
-rect_scale = Vector2( 5, 5 )
+margin_left = -222.0
+margin_top = -192.5
+margin_right = 222.0
+margin_bottom = -95.5
+custom_fonts/font = ExtResource( 3 )
 text = "Game Over"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -369,24 +400,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -78.5
-margin_top = -22.0
-margin_right = 78.5
-margin_bottom = 22.0
+margin_left = -94.5
+margin_top = -27.0
+margin_right = 94.5
+margin_bottom = 27.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TryAgainBtn" type="Button" parent="GameOverScreen/VBoxContainer"]
-margin_right = 157.0
-margin_bottom = 20.0
+margin_right = 189.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
 text = "Erneut Versuchen"
 
 [node name="BackToMenuBtn" type="Button" parent="GameOverScreen/VBoxContainer"]
-margin_top = 24.0
-margin_right = 157.0
-margin_bottom = 44.0
-text = "zurück zum Hautmenü"
+margin_top = 29.0
+margin_right = 189.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 2 )
+text = "Zurück zum Hautmenü"
 __meta__ = {
 "_edit_use_anchors_": false
 }

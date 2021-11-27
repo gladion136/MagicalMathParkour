@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/menu/LevelSelection.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
 
 [node name="LevelSelection" type="Control"]
 anchor_right = 1.0
@@ -9,6 +10,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+font = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -28,7 +30,8 @@ margin_left = 8.90897
 margin_top = 8.90898
 margin_right = 108.909
 margin_bottom = 28.909
-text = "Back to menu"
+custom_fonts/font = ExtResource( 2 )
+text = "Zurück zum Hauptmenü"
 __meta__ = {
 "_edit_use_anchors_": false
 }

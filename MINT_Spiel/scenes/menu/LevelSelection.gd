@@ -1,6 +1,7 @@
 extends Control
 
 onready var main = get_parent()
+export(Font) var font
 
 enum MODE {
 	LINEAR,
@@ -35,6 +36,7 @@ func on_open():
 		if create:
 			var new_button = Button.new()
 			new_button.text = level
+			new_button.add_font_override("font", font)
 			new_button.connect("pressed", self, "start_level", [level])
 			$VBoxContainer.add_child(new_button)
 		
