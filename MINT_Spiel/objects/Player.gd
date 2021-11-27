@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const axis_scale = 50
+const axis_scale = Global.axis_scale
 const FALL_SPEED = 400
 const FLY_SPEED = 400
 
@@ -18,7 +18,6 @@ enum STATE {
 }
 
 var current_state = STATE.FALL
-var coordinate_system_center = Vector2.ZERO
 var current_mode = MODE.LINEAR
 var a = 0
 var b = 0
@@ -33,7 +32,7 @@ var gui
 
 func _ready():
 	$AnimationPlayer.play("Idle")
-	coordinate_system_center = position
+	Global.coordinate_system_center = position
 
 
 func _physics_process(delta):
@@ -41,7 +40,7 @@ func _physics_process(delta):
 		STATE.IDLE:
 			pass
 		STATE.FLY_UP:
-			var target = Vector2(0, y_zero * axis_scale + coordinate_system_center.y - self.position.y)
+			var target = Vector2(0, y_zero * axis_scale + Global.coordinate_system_center.y - self.position.y)
 			if target.length() <= FLY_SPEED/100:
 				set_current_state(STATE.FLY)
 			else:
@@ -91,9 +90,7 @@ func move_with_coordinate_system(pos):
 	Move coordinate system and redraw it
 """
 func move_coordinate_system(pos):
-	coordinate_system_center = pos
-	# redraw
-	get_tree().get_root().get_node("InGame/FunctionPreview").coordinate_system_center = pos
+	Global.coordinate_system_center = pos
 	get_tree().get_root().get_node("InGame/FunctionPreview").update()
 
 
@@ -121,7 +118,7 @@ func jump_quad(a, b, c, left):
 		print("Jump quad")
 		x = 0
 		self.a = -a
-		self.b = b
+		self.b = -b
 		self.c = -c
 		self.y_zero = self.a*(self.b)*(self.b) + self.c
 		$Sprite.flip_h = left
@@ -152,7 +149,7 @@ func jump_sin(a, b, c, d, left):
 	Move the player along the current function
 """
 func _move_with_function(delta):
-	var x_cur = (self.position.x - coordinate_system_center.x) / axis_scale
+	var x_cur = (self.position.x - Global.coordinate_system_center.x) / axis_scale
 	var x_next = x_cur
 	if invert:
 		x_next -= FLY_SPEED/10 * delta
@@ -161,22 +158,22 @@ func _move_with_function(delta):
 	match current_mode:
 		MODE.LINEAR:
 			var y = (a*x_next) + b
-			var y_n = y * axis_scale + coordinate_system_center.y - 1
-			var x_n = x_next * axis_scale + coordinate_system_center.x
+			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
+			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
 			if move_and_collide(velocity):
 				set_current_state(STATE.FALL)
 		MODE.QUAD:
 			var y = a*(b+x_next)*(b+x_next) + c
-			var y_n = y * axis_scale + coordinate_system_center.y - 1
-			var x_n = x_next * axis_scale + coordinate_system_center.x
+			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
+			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
 			if move_and_collide(velocity):
 				set_current_state(STATE.FALL)
 		MODE.SIN:
 			var y = a*sin(b*2*PI*(x_next+c))+d
-			var y_n = y * axis_scale + coordinate_system_center.y - 1
-			var x_n = x_next * axis_scale + coordinate_system_center.x
+			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
+			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
 			if move_and_collide(velocity):
 				set_current_state(STATE.FALL)

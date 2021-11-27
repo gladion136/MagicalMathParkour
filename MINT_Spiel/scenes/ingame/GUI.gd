@@ -87,7 +87,7 @@ func select_mode(mode):
 			MODE.SIN:
 				$Control/Sin.visible = true
 			MODE.MULTI:
-				$Control/ModeSelection.visible = true
+				$ModeSelection.visible = true
 		selected_mode = mode
 
 

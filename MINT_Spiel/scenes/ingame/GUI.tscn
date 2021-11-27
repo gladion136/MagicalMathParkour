@@ -18,6 +18,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ModeSelection" type="VBoxContainer" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -41.5
+margin_right = 119.0
+margin_bottom = 41.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnLinear" type="Button" parent="ModeSelection"]
+margin_right = 103.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
+text = "Linear"
+
+[node name="BtnQuad" type="Button" parent="ModeSelection"]
+margin_top = 29.0
+margin_right = 103.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 2 )
+text = "Quadratisch"
+
+[node name="BtnSin" type="Button" parent="ModeSelection"]
+margin_top = 58.0
+margin_right = 103.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sinus"
+
 [node name="Control" type="Control" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -321,38 +353,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ModeSelection" type="VBoxContainer" parent="Control"]
-visible = false
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 16.0
-margin_top = -41.5
-margin_right = 102.0
-margin_bottom = 41.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BtnLinear" type="Button" parent="Control/ModeSelection"]
-margin_right = 103.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 2 )
-text = "Linear"
-
-[node name="BtnQuad" type="Button" parent="Control/ModeSelection"]
-margin_top = 29.0
-margin_right = 103.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 2 )
-text = "Quadratisch"
-
-[node name="BtnSin" type="Button" parent="Control/ModeSelection"]
-margin_top = 58.0
-margin_right = 103.0
-margin_bottom = 83.0
-custom_fonts/font = ExtResource( 2 )
-text = "Sinus"
-
 [node name="JumpsRemainig" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -427,14 +427,14 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="ModeSelection/BtnLinear" to="." method="_on_BtnLinear_pressed"]
+[connection signal="pressed" from="ModeSelection/BtnQuad" to="." method="_on_BtnQuad_pressed"]
+[connection signal="pressed" from="ModeSelection/BtnSin" to="." method="_on_BtnSin_pressed"]
 [connection signal="pressed" from="Control/Linear/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
 [connection signal="pressed" from="Control/Linear/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
 [connection signal="pressed" from="Control/Quad/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
 [connection signal="pressed" from="Control/Quad/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
 [connection signal="pressed" from="Control/Sin/BtnJumpL" to="." method="_on_BtnJumpL_pressed"]
 [connection signal="pressed" from="Control/Sin/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
-[connection signal="pressed" from="Control/ModeSelection/BtnLinear" to="." method="_on_BtnLinear_pressed"]
-[connection signal="pressed" from="Control/ModeSelection/BtnQuad" to="." method="_on_BtnQuad_pressed"]
-[connection signal="pressed" from="Control/ModeSelection/BtnSin" to="." method="_on_BtnSin_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]

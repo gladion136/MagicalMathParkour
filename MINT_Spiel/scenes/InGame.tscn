@@ -7,13 +7,13 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasItem
 
-const COORDINATE_SYSTEM_SIZE = 200 # * axis_scale to get pixel
+const COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
 
-const axis_label_length = 10
+const axis_label_length = Global.axis_label_length
 
-const axis_scale = 50
+const axis_scale = Global.axis_scale
 
-const stroke_width = 20
+const stroke_width = Global.stroke_width
 
 enum MODE {
 	LINEAR,
@@ -22,7 +22,6 @@ enum MODE {
 	EMPTY
 }
 
-var coordinate_system_center = Vector2.ZERO
 var current_mode = MODE.LINEAR
 var a = 0
 var b = 0
@@ -65,21 +64,21 @@ func _draw():
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
 				var y = a * x + b
-				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
+				var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
 				vector_array.append(on_map)
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 		MODE.QUAD:
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
 				var y = a * (x + b)*(x + b) + c
-				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
+				var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
 				vector_array.append(on_map)
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 		MODE.SIN:
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
 				var y = a*sin(b*2*PI*(x+c))+d
-				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
+				var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
 				vector_array.append(on_map)
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 	_draw_axis()
@@ -89,20 +88,20 @@ func _draw_axis():
 	# x-Axis
 	var vector_array = []
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x - axis_scale, coordinate_system_center.y))
-		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y))
-		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y - axis_label_length))
-		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y + axis_label_length))
+		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x - axis_scale, Global.coordinate_system_center.y))
+		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x, Global.coordinate_system_center.y))
+		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x, Global.coordinate_system_center.y - axis_label_length))
+		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x, Global.coordinate_system_center.y + axis_label_length))
 		
 	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 		
 	# y-Axis
 	vector_array = []
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		vector_array.append(Vector2(coordinate_system_center.x, axis_scale*i + coordinate_system_center.y - axis_scale))
-		vector_array.append(Vector2(coordinate_system_center.x, axis_scale*i + coordinate_system_center.y))
-		vector_array.append(Vector2(coordinate_system_center.x -axis_label_length, axis_scale*i + coordinate_system_center.y))
-		vector_array.append(Vector2(coordinate_system_center.x +axis_label_length, axis_scale*i + coordinate_system_center.y))
+		vector_array.append(Vector2(Global.coordinate_system_center.x, axis_scale*i + Global.coordinate_system_center.y - axis_scale))
+		vector_array.append(Vector2(Global.coordinate_system_center.x, axis_scale*i + Global.coordinate_system_center.y))
+		vector_array.append(Vector2(Global.coordinate_system_center.x -axis_label_length, axis_scale*i + Global.coordinate_system_center.y))
+		vector_array.append(Vector2(Global.coordinate_system_center.x +axis_label_length, axis_scale*i + Global.coordinate_system_center.y))
 	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 	
 "

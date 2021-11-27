@@ -1,5 +1,6 @@
 extends Node
 
+onready var point_scene = preload("res://objects/point.tscn")
 
 func _ready():
 	for child in get_node("Island").get_children():
@@ -17,3 +18,11 @@ func _ready():
 	player.set_remaining_jumps(new_level.amount_jumps + 1)
 	player.move_with_coordinate_system(new_level.get_node("Spawn").position)
 	
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			var new_point = point_scene.instance()
+			$Island.add_child(new_point)
+			new_point.position = get_node("Island/Level/TileMap").get_global_mouse_position()
+			print("Spawn point: " + str(new_point.position))
