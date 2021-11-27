@@ -17,4 +17,3 @@ func _ready():
 	player.set_remaining_jumps(new_level.amount_jumps + 1)
 	player.move_with_coordinate_system(new_level.get_node("Spawn").position)
 	
-

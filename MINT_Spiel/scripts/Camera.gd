@@ -28,5 +28,3 @@ func get_input_vector():
 	dir.y = Input.get_action_strength("camera_down") - \
 			Input.get_action_strength("camera_up")
 	return dir
-
-	

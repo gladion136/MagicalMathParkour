@@ -59,7 +59,6 @@ func draw_sin(a, b, c, d):
 
 
 func _draw():
-	print(\"called\")
 	var vector_array = []
 	match current_mode:
 		MODE.LINEAR:
@@ -69,7 +68,6 @@ func _draw():
 				var on_map = Vector2(x * axis_scale + coordinate_system_center.x, y * axis_scale + coordinate_system_center.y)
 				vector_array.append(on_map)
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
-				
 		MODE.QUAD:
 			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 				var x = float(i) / axis_scale
@@ -88,12 +86,6 @@ func _draw():
 
 
 func _draw_axis():
-	# x line
-	#draw_line(Vector2(-COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), Vector2(COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.x, coordinate_system_center.y), ColorN(\"slateblue\"), 2)
-	
-	# y line
-	#draw_line(Vector2(coordinate_system_center.x, COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), Vector2(coordinate_system_center.x, -COORDINATE_SYSTEM_SIZE * axis_scale + coordinate_system_center.y), ColorN(\"slateblue\"), 2)
-	
 	# x-Axis
 	var vector_array = []
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
@@ -103,8 +95,7 @@ func _draw_axis():
 		vector_array.append(Vector2(axis_scale*i + coordinate_system_center.x, coordinate_system_center.y + axis_label_length))
 		
 	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
-	#draw_polyline(vector_array, ColorN(\"slateblue\"), 2)
-	
+		
 	# y-Axis
 	vector_array = []
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
