@@ -22,7 +22,9 @@ enum MODE {
 	EMPTY
 }
 
-var current_mode = MODE.LINEAR
+var current_mode = MODE.EMPTY
+var last_vector_array = []
+var vector_array =  []
 var a = 0
 var b = 0
 var c = 0
@@ -61,26 +63,36 @@ func _draw():
 	var vector_array = []
 	match current_mode:
 		MODE.LINEAR:
-			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
-				var x = float(i) / axis_scale
-				var y = a * x + b
-				var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
-				vector_array.append(on_map)
+			if vector_array.empty():
+				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
+					var x = float(i) / axis_scale
+					var y = a * x + b
+					var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
+					vector_array.append(on_map)
+				last_vector_array = vector_array
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 		MODE.QUAD:
-			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
-				var x = float(i) / axis_scale
-				var y = a * (x + b)*(x + b) + c
-				var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
-				vector_array.append(on_map)
+			if vector_array.empty():
+				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
+					var x = float(i) / axis_scale
+					var y = a * (x + b)*(x + b) + c
+					var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
+					vector_array.append(on_map)
+				last_vector_array = vector_array
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
 		MODE.SIN:
-			for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
-				var x = float(i) / axis_scale
-				var y = a*sin(b*2*PI*(x+c))+d
-				var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
-				vector_array.append(on_map)
+			if vector_array.empty():
+				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
+					var x = float(i) / axis_scale
+					var y = a*sin(b*2*PI*(x+c))+d
+					var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
+					vector_array.append(on_map)
+				last_vector_array = vector_array
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
+		MODE.EMPTY:
+			vector_array = []
+			if not last_vector_array.empty():
+				draw_multiline(last_vector_array, ColorN(\"red\"), stroke_width)
 	_draw_axis()
 
 
