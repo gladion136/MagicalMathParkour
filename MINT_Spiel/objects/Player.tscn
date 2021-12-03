@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/player_placeholder/Fall.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23.3575, 41.8833 )
+extents = Vector2( 19.8094, 39.9854 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Fall"
@@ -133,7 +133,7 @@ tracks/2/keys = {
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3.652 )
+position = Vector2( 0, 5.89787 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
