@@ -41,11 +41,12 @@ func _physics_process(delta):
 			pass
 		STATE.FLY_UP:
 			var target = Vector2(0, y_zero * axis_scale + Global.coordinate_system_center.y - self.position.y)
-			if target.length() <= FLY_SPEED/100:
+			if target.length() <= 1:
 				set_current_state(STATE.FLY)
 			else:
 				var velocity = target.normalized() * FLY_SPEED * delta
-				if move_and_collide(velocity):
+				var collider = move_and_collide(velocity)
+				if collider and collider.normal.y > 0:
 					set_current_state(STATE.FALL)
 		STATE.FLY:
 			_move_with_function(delta)
