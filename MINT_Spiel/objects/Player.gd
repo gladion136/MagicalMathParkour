@@ -46,15 +46,16 @@ func _physics_process(delta):
 			else:
 				var velocity = target.normalized() * FLY_SPEED * delta
 				var collider = move_and_collide(velocity)
-				if collider and collider.normal.y > 0 or collider.normal.y < 0:
-					set_current_state(STATE.FALL)
+				if collider != null:
+					if collider.normal.y > 0 or collider.normal.y < 0:
+						set_current_state(STATE.FALL)
 		STATE.FLY:
 			_move_with_function(delta)
 		STATE.FALL:
 			var collider = move_and_collide(Vector2(0,delta*FALL_SPEED))
-			
-			if collider and collider.normal.y < 0:
-				set_current_state(STATE.IDLE)
+			if collider != null:
+				if collider.normal.y < 0:
+					set_current_state(STATE.IDLE)
 
 
 """
