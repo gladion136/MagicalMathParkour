@@ -12,14 +12,17 @@ enum MODE {
 
 var levels = []
 
+
 func _ready():
 	pass
-	
+
+
 func on_open():
 	for child in $VBoxContainer.get_children():
 		$VBoxContainer.remove_child(child)
 	print(main.current_mode)
 	levels = list_files_in_directory("res://level/")
+	levels.sort()
 	print(levels)
 	for i in range(levels.size()):
 		var level = levels[i]
@@ -35,12 +38,12 @@ func on_open():
 		
 		if create:
 			var new_button = Button.new()
-			new_button.text = level
+			var btn_text = level.replace(".tscn", "")
+			btn_text = btn_text.replace("_" ," ")
+			new_button.text = btn_text
 			new_button.add_font_override("font", font)
 			new_button.connect("pressed", self, "start_level", [level])
 			$VBoxContainer.add_child(new_button)
-		
-	
 
 
 func list_files_in_directory(path):
@@ -61,6 +64,7 @@ func list_files_in_directory(path):
 
 func _on_Button_pressed():
 	main.select_menu(main.MENU.MAIN)
+
 
 func start_level(level):
 	print("Start level: " + level)
