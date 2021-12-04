@@ -35,6 +35,6 @@ func game_over():
 
 
 func game_finished():
-	var stats = { "used_jumps" : str(player.jumps_remaining), "max_jumps" : str(new_level.amount_jumps)}
+	var stats = { "used_jumps" : str(new_level.amount_jumps - player.jumps_remaining), "max_jumps" : str(new_level.amount_jumps)}
 	$GUI.on_finish_game(stats)
 	player.set_current_state(player.STATE.FREEZE)
