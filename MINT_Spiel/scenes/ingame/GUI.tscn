@@ -464,6 +464,85 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FinishScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="FinishScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.364706, 0.364706, 0.364706, 0.380392 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FinishScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -279.5
+margin_top = -272.5
+margin_right = 279.5
+margin_bottom = -175.5
+grow_vertical = 2
+custom_fonts/font = ExtResource( 3 )
+text = "Glückwunsch!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="Label" parent="FinishScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -279.5
+margin_top = -88.5
+margin_right = 279.5
+margin_bottom = 8.5
+grow_vertical = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Du hast 3 / 3 Versuchen gebraucht."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FinishScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -94.5
+margin_top = -27.0
+margin_right = 94.5
+margin_bottom = 27.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgainBtn" type="Button" parent="FinishScreen/VBoxContainer"]
+margin_right = 189.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
+text = "Erneut Versuchen"
+
+[node name="BackToMenuBtn" type="Button" parent="FinishScreen/VBoxContainer"]
+margin_top = 29.0
+margin_right = 189.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 2 )
+text = "Zurück zum Hautmenü"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="ModeSelection/BtnLinear" to="." method="_on_BtnLinear_pressed"]
 [connection signal="pressed" from="ModeSelection/BtnQuad" to="." method="_on_BtnQuad_pressed"]
@@ -476,3 +555,5 @@ __meta__ = {
 [connection signal="pressed" from="Control/Sin/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="FinishScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
+[connection signal="pressed" from="FinishScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]
