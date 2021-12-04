@@ -157,9 +157,9 @@ func _move_with_function(delta):
 	var x_cur = (self.position.x - Global.coordinate_system_center.x) / axis_scale
 	var x_next = x_cur
 	if invert:
-		x_next -= 1 * delta
+		x_next -= 2 * delta
 	else:
-		x_next += 1 * delta
+		x_next += 2 * delta
 	match current_mode:
 		MODE.LINEAR:
 			var y = (a*x_next) + b
