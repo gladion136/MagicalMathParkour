@@ -60,6 +60,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 5.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Linear" type="HBoxContainer" parent="Control"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -81,25 +90,31 @@ text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Linear"]
 margin_left = 34.0
-margin_right = 92.0
+margin_right = 124.0
 margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "1"
 
 [node name="Label2" type="Label" parent="Control/Linear"]
-margin_left = 96.0
+margin_left = 128.0
 margin_top = 10.0
-margin_right = 120.0
+margin_right = 155.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = "*x +"
+text = "∙ x +"
 
 [node name="B" type="LineEdit" parent="Control/Linear"]
-margin_left = 124.0
-margin_right = 182.0
+margin_left = 159.0
+margin_right = 249.0
 margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -111,8 +126,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Linear"]
-margin_left = 186.0
-margin_right = 298.0
+margin_left = 253.0
+margin_right = 365.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -122,8 +137,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Linear"]
-margin_left = 302.0
-margin_right = 427.0
+margin_left = 369.0
+margin_right = 494.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -156,6 +171,7 @@ text = "f(x)="
 margin_left = 34.0
 margin_right = 92.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -178,6 +194,7 @@ text = "*(x +"
 margin_left = 129.0
 margin_right = 187.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -200,6 +217,7 @@ text = ")² +"
 margin_left = 217.0
 margin_right = 275.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -256,6 +274,7 @@ text = "f(x)="
 margin_left = 34.0
 margin_right = 92.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -278,6 +297,7 @@ text = "*sin(2*PI*"
 margin_left = 165.0
 margin_right = 223.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -300,6 +320,7 @@ text = "*x +"
 margin_left = 255.0
 margin_right = 313.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -322,6 +343,7 @@ text = ") +"
 margin_left = 337.0
 margin_right = 395.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
