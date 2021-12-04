@@ -29,6 +29,7 @@ var y_zero = 0 # y pos on zero
 var jumps_remaining
 var gui
 onready var game = get_tree().current_scene
+var camera
 
 
 func _ready():
@@ -66,6 +67,7 @@ func set_current_state(state):
 	current_state = state
 	match current_state:
 		STATE.IDLE:
+			camera.follow_player = false
 			set_remaining_jumps(jumps_remaining - 1)
 			$AnimationPlayer.play("Idle")
 			move_coordinate_system(self.position)
@@ -73,6 +75,7 @@ func set_current_state(state):
 			function_preview.current_mode = function_preview.MODE.EMPTY
 			function_preview.update()
 		STATE.FLY_UP:
+			camera.follow_player = true
 			$AnimationPlayer.play("Fly")
 		STATE.FLY:
 			$AnimationPlayer.play("Fly")
