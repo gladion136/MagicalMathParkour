@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ingame/GUI.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/fonts/big_title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/default_border.tres" type="DynamicFont" id=4]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -375,7 +376,7 @@ margin_left = -137.0
 margin_top = 14.0
 margin_right = -13.0
 margin_bottom = 33.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 text = "Sprünge übrig: 5"
 __meta__ = {
 "_edit_use_anchors_": false
