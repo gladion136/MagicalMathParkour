@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const axis_scale = Global.axis_scale
 const FALL_SPEED = 400
-const FLY_SPEED = 400
+const FLY_SPEED = 800
 
 enum MODE {
 	LINEAR,
@@ -157,9 +157,9 @@ func _move_with_function(delta):
 	var x_cur = (self.position.x - Global.coordinate_system_center.x) / axis_scale
 	var x_next = x_cur
 	if invert:
-		x_next -= 2 * delta
+		x_next -= FLY_SPEED / axis_scale * delta
 	else:
-		x_next += 2 * delta
+		x_next += FLY_SPEED / axis_scale * delta
 	match current_mode:
 		MODE.LINEAR:
 			var y = (a*x_next) + b
