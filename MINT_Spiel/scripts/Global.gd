@@ -12,7 +12,7 @@ var mode = MODE.LINEAR
 
 const COORDINATE_SYSTEM_SIZE = 200
 const axis_label_length = 10
-const axis_scale = 50
+const axis_scale = 150
 const stroke_width = 20
 
 
