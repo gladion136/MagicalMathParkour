@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/player_placeholder/Fall.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 19.8094, 39.9854 )
+extents = Vector2( 23.3575, 41.8833 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Fall"

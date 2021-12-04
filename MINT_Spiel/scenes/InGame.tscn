@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ingame/GUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/01_01_Linear_Intro.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/InGame.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/default_border.tres" type="DynamicFont" id=4]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasItem
@@ -15,6 +16,8 @@ const axis_scale = Global.axis_scale
 
 const stroke_width = Global.stroke_width
 
+export(Font) var font
+
 enum MODE {
 	LINEAR,
 	QUAD,
@@ -23,8 +26,11 @@ enum MODE {
 }
 
 var current_mode = MODE.EMPTY
+var old_pos = Vector2(0,0)
 var last_vector_array = []
 var vector_array =  []
+var x_axis_array = []
+var y_axis_array = []
 var a = 0
 var b = 0
 var c = 0
@@ -32,8 +38,52 @@ var d = 0
 
 
 func _ready():
-	pass
+	# y-axis numbers
+	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
+		if i != 0:
+			var label = Label.new()
+			label.rect_min_size = Vector2(50,20)
+			label.align = Label.ALIGN_RIGHT
+			#label.anchor_left = 0.5
+			#label.anchor_right = 0.5
+			label.set_position(Vector2(-65, -axis_scale*i - 10))
+			label.add_font_override(\"font\", font)
+			label.modulate = Color(1,1,1,0.7)
+			label.text = str(i)
+			add_child(label)
+	# x-axis numbers
+	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
+		if i != 0:
+			var label = Label.new()
+			label.rect_min_size = Vector2(50,20)
+			label.align = Label.ALIGN_CENTER
+			#label.anchor_left = 0.5
+			#label.anchor_right = 0.5
+			label.set_position(Vector2(-25 + axis_scale*i, +10))
+			label.add_font_override(\"font\", font)
+			label.modulate = Color(1,1,1,0.7)
+			label.text = str(i)
+			add_child(label)
+	# x-axis
+	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
+		x_axis_array.append(Vector2(axis_scale*i - axis_scale,0))
+		x_axis_array.append(Vector2(axis_scale*i, 0))
+		x_axis_array.append(Vector2(axis_scale*i, - axis_label_length))
+		x_axis_array.append(Vector2(axis_scale*i, axis_label_length))
+		
+	# y-axis
+	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
+		y_axis_array.append(Vector2(0, axis_scale*i - axis_scale))
+		y_axis_array.append(Vector2(0, axis_scale*i))
+		y_axis_array.append(Vector2(-axis_label_length, axis_scale*i))
+		y_axis_array.append(Vector2(axis_label_length, axis_scale*i))
+	
 
+func set_new_pos(pos):
+	old_pos = self.position
+	self.position = pos
+	for i in range(len(last_vector_array)):
+		last_vector_array[i] += old_pos - pos
 
 func draw_linear(a, b):
 	current_mode = MODE.LINEAR
@@ -67,7 +117,7 @@ func _draw():
 				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 					var x = float(i) / axis_scale
 					var y = a * x + b
-					var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
+					var on_map = Vector2(x * axis_scale, y * axis_scale)
 					vector_array.append(on_map)
 				last_vector_array = vector_array
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
@@ -76,7 +126,7 @@ func _draw():
 				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 					var x = float(i) / axis_scale
 					var y = a * (x + b)*(x + b) + c
-					var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
+					var on_map = Vector2(x * axis_scale, y * axis_scale)
 					vector_array.append(on_map)
 				last_vector_array = vector_array
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
@@ -85,7 +135,7 @@ func _draw():
 				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 					var x = float(i) / axis_scale
 					var y = a*sin(b*2*PI*(x+c))+d
-					var on_map = Vector2(x * axis_scale + Global.coordinate_system_center.x, y * axis_scale + Global.coordinate_system_center.y)
+					var on_map = Vector2(x * axis_scale, y * axis_scale)
 					vector_array.append(on_map)
 				last_vector_array = vector_array
 			draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
@@ -97,24 +147,8 @@ func _draw():
 
 
 func _draw_axis():
-	# x-Axis
-	var vector_array = []
-	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x - axis_scale, Global.coordinate_system_center.y))
-		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x, Global.coordinate_system_center.y))
-		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x, Global.coordinate_system_center.y - axis_label_length))
-		vector_array.append(Vector2(axis_scale*i + Global.coordinate_system_center.x, Global.coordinate_system_center.y + axis_label_length))
-		
-	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
-		
-	# y-Axis
-	vector_array = []
-	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
-		vector_array.append(Vector2(Global.coordinate_system_center.x, axis_scale*i + Global.coordinate_system_center.y - axis_scale))
-		vector_array.append(Vector2(Global.coordinate_system_center.x, axis_scale*i + Global.coordinate_system_center.y))
-		vector_array.append(Vector2(Global.coordinate_system_center.x -axis_label_length, axis_scale*i + Global.coordinate_system_center.y))
-		vector_array.append(Vector2(Global.coordinate_system_center.x +axis_label_length, axis_scale*i + Global.coordinate_system_center.y))
-	draw_multiline(vector_array, ColorN(\"slateblue\"), stroke_width)
+	draw_multiline(x_axis_array, ColorN(\"slateblue\"), stroke_width)
+	draw_multiline(y_axis_array, ColorN(\"slateblue\"), stroke_width)
 	
 "
 
@@ -127,5 +161,6 @@ script = ExtResource( 3 )
 
 [node name="FunctionPreview" type="Node2D" parent="."]
 script = SubResource( 1 )
+font = ExtResource( 4 )
 
 [node name="GUI" parent="." instance=ExtResource( 1 )]

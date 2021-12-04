@@ -33,7 +33,7 @@ onready var game = get_tree().current_scene
 
 func _ready():
 	$AnimationPlayer.play("Idle")
-	Global.coordinate_system_center = position
+	move_with_coordinate_system(position)
 
 
 func _physics_process(delta):
@@ -96,7 +96,7 @@ func move_with_coordinate_system(pos):
 """
 func move_coordinate_system(pos):
 	Global.coordinate_system_center = pos
-	get_tree().get_root().get_node("InGame/FunctionPreview").update()
+	game.on_coordinate_system_changed()
 
 
 """

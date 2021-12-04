@@ -38,3 +38,6 @@ func game_finished():
 	var stats = { "used_jumps" : str(new_level.amount_jumps - player.jumps_remaining + 1), "max_jumps" : str(new_level.amount_jumps)}
 	$GUI.on_finish_game(stats)
 	player.set_current_state(player.STATE.FREEZE)
+	
+func on_coordinate_system_changed():
+	$FunctionPreview.set_new_pos(Global.coordinate_system_center)
