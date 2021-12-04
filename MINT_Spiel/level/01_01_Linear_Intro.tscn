@@ -39,13 +39,14 @@ tile_data = PoolIntArray( -262148, 0, 0, -262147, 0, 1, -262146, 0, 1, -262145, 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2( -0.698635, 605.525 )
 
+[node name="Flag" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1142.32, 620.397 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 339.036, 451.541 )
+current = true
 limit_left = -200
 limit_top = -260
 limit_right = 3600
 limit_bottom = 800
 script = ExtResource( 5 )
-
-[node name="Flag" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1142.32, 620.397 )
