@@ -1,6 +1,7 @@
 extends Node
 
 onready var point_scene = preload("res://objects/point.tscn")
+var player
 
 func _ready():
 	for child in get_node("Island").get_children():
@@ -12,7 +13,7 @@ func _ready():
 	$GUI.update()
 	
 	# Spawn player
-	var player = preload("res://objects/Player.tscn").instance()
+	player = preload("res://objects/Player.tscn").instance()
 	get_node("Island").add_child(player)
 	player.gui = $GUI
 	player.set_remaining_jumps(new_level.amount_jumps + 1)
@@ -26,3 +27,12 @@ func _unhandled_input(event):
 			$Island.add_child(new_point)
 			new_point.position = get_node("Island/Level/TileMap").get_global_mouse_position()
 			print("Spawn point: " + str(new_point.position))
+
+
+func game_over():
+	$GUI.on_game_over()
+
+
+func game_finished():
+	$GUI.on_game_over()
+	player.set_current_state(player.STATE.FREEZE)

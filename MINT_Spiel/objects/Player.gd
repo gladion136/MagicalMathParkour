@@ -14,7 +14,8 @@ enum STATE {
 	IDLE,
 	FLY_UP,
 	FLY,
-	FALL
+	FALL,
+	FREEZE
 }
 
 var current_state = STATE.FALL
@@ -23,11 +24,11 @@ var a = 0
 var b = 0
 var c = 0
 var d = 0
-var x = 0
 var invert = false
 var y_zero = 0 # y pos on zero
 var jumps_remaining
 var gui
+onready var game = get_tree().current_scene
 
 
 func _ready():
@@ -77,6 +78,8 @@ func set_current_state(state):
 			$AnimationPlayer.play("Fly")
 		STATE.FALL:
 			$AnimationPlayer.play("Fall")
+		STATE.FREEZE:
+			$AnimationPlayer.stop(false)
 		
 
 
@@ -102,7 +105,6 @@ func move_coordinate_system(pos):
 func jump_linear(a, b, left):
 	if current_state == STATE.IDLE:
 		print("Jump linear")
-		x = 0
 		self.a = -a
 		self.b = -b
 		self.y_zero = self.b
@@ -118,7 +120,6 @@ func jump_linear(a, b, left):
 func jump_quad(a, b, c, left):
 	if current_state == STATE.IDLE:
 		print("Jump quad")
-		x = 0
 		self.a = -a
 		self.b = -b
 		self.c = -c
@@ -135,7 +136,6 @@ func jump_quad(a, b, c, left):
 func jump_sin(a, b, c, d, left):
 	if current_state == STATE.IDLE:
 		print("Jump sin")
-		x = 0
 		self.a = -a
 		self.b = b
 		self.c = c
@@ -184,4 +184,4 @@ func set_remaining_jumps(jumps):
 	jumps_remaining = jumps
 	gui.set_remaining_jumps_label(jumps)
 	if jumps <= 0:
-		gui.on_game_over()
+		game.game_over()
