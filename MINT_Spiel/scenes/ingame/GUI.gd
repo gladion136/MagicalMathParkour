@@ -161,6 +161,11 @@ func on_game_over():
 	$GameOverScreen.visible = true
 
 
+func on_finish_game(stats):
+	$FinishScreen/Stats.text = "Du hast "+ stats["used_jumps"] +" / "+ stats["max_jumps"] +" Versuchen gebraucht."
+	$FinishScreen.visible = true
+
+
 func _on_TryAgainBtn_pressed():
 	get_tree().reload_current_scene()
 
