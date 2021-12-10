@@ -14,6 +14,7 @@ onready var selected_mode = MODE.LINEAR
 var valid_characters = ['0','1','2','3','4','5','6','7','8','9','0','.','/','-']
 
 func _ready():
+	$LevelName.text = Global.level_name
 	for child in $Control.get_children():
 		for node in child.get_children():
 			if node.is_class("LineEdit"):

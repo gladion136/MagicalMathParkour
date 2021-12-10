@@ -42,7 +42,7 @@ func on_open():
 			btn_text = btn_text.replace("_" ," ")
 			new_button.text = btn_text
 			new_button.add_font_override("font", font)
-			new_button.connect("pressed", self, "start_level", [level])
+			new_button.connect("pressed", self, "start_level", [level, btn_text])
 			$VBoxContainer.add_child(new_button)
 
 
@@ -66,8 +66,9 @@ func _on_Button_pressed():
 	main.select_menu(main.MENU.MAIN)
 
 
-func start_level(level):
+func start_level(level, name):
 	print("Start level: " + level)
 	Global.level_res = level
+	Global.level_name = name
 	Global.mode = main.current_mode
 	get_tree().change_scene("res://scenes/InGame.tscn")

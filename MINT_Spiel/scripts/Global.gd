@@ -8,6 +8,7 @@ enum MODE {
 }
 
 var level_res = ""
+var level_name = ""
 var mode = MODE.LINEAR
 
 const COORDINATE_SYSTEM_SIZE = 200
