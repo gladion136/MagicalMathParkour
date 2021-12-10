@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/flag.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/level.gd" type="Script" id=3]
 [ext_resource path="res://assets/BG.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=5]
+[ext_resource path="res://objects/Star.tscn" type="PackedScene" id=6]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
@@ -51,3 +52,6 @@ script = ExtResource( 5 )
 
 [node name="Flag" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1708.33, 619.202 )
+
+[node name="Star" parent="." instance=ExtResource( 6 )]
+position = Vector2( 335, 497 )

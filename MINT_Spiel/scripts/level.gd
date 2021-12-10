@@ -9,11 +9,12 @@ enum MODE {
 }
 
 export(int) var amount_jumps = 3
-export(MODE) var current_mode = MODE.LINEAR
-
+var star_count = 0
 
 func _ready():
-	pass
+	for node in get_children():
+		if node.get_class() == "Star":
+			star_count += 1
 
 func _process(delta):
 	pass

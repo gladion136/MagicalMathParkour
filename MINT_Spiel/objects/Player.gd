@@ -27,6 +27,7 @@ var d = 0
 var invert = false
 var y_zero = 0 # y pos on zero
 var jumps_remaining
+var stars_collected = 0
 var gui
 onready var game = get_tree().current_scene
 var camera
@@ -207,3 +208,6 @@ func set_remaining_jumps(jumps):
 	gui.set_remaining_jumps_label(jumps)
 	if jumps <= 0:
 		game.game_over()
+
+func star_collected():
+	stars_collected += 1

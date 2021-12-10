@@ -20,7 +20,7 @@ func _ready():
 				node.connect("text_changed", self, "restrict_input", [node])
 
 func update():
-	select_mode(level.current_mode)
+	select_mode(Global.mode)
 
 
 func jump(left):
@@ -160,11 +160,10 @@ func set_remaining_jumps_label(remaining_jumps):
 func on_game_over():
 	$GameOverScreen.visible = true
 
-
 func on_finish_game(stats):
 	$FinishScreen/Stats.text = "Du hast "+ stats["used_jumps"] +" / "+ stats["max_jumps"] +" Versuchen gebraucht."
 	$FinishScreen.visible = true
-
+	$FinishScreen/StarNode2.set_star_count(stats["stars_collected"], stats["total_stars"])
 
 func _on_TryAgainBtn_pressed():
 	get_tree().reload_current_scene()
