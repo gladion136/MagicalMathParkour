@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/menu/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
-
+[ext_resource path="res://scenes/ingame/JumpsStats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ingame/StarsStats.tscn" type="PackedScene" id=4]
 
 [node name="LevelSelection" type="Control"]
 anchor_right = 1.0
@@ -12,19 +13,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 font = ExtResource( 2 )
+jump_stats_scene = ExtResource( 3 )
+star_stats_scene = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -114.5
-margin_top = -95.5
-margin_right = 114.5
-margin_bottom = 95.5
+anchor_bottom = 1.0
+margin_left = -346.5
+margin_top = 105.5
+margin_right = 346.5
+margin_bottom = -105.5
+grow_horizontal = 2
+grow_vertical = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+columns = 3
 
 [node name="Button" type="Button" parent="."]
 margin_left = 8.90897

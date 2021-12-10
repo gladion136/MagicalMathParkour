@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/default_border.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/objects/Star.png" type="Texture" id=2]
+
+[node name="Stars" type="HBoxContainer"]
+margin_top = 54.0
+margin_right = 100.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 100, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarsCollected" type="Label" parent="."]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = ExtResource( 1 )
+text = "0 / 2"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star" type="Sprite" parent="."]
+position = Vector2( 79.3429, 25.1661 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )

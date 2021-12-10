@@ -154,15 +154,21 @@ func _on_BtnJumpL_pressed():
 
 func _on_BtnJumpR_pressed():
 	jump(false)
-	
+
+
 func set_remaining_jumps_label(remaining_jumps):
-	$JumpsRemainig.text = "Sprünge übrig: " + str(remaining_jumps)
+	$Stats/Jumps/JumpsRemainig.text = str(level.amount_jumps - remaining_jumps) + " / " + str(level.amount_jumps)
+
+
+func set_star_count(starcount, outof):
+	$Stats/Stars/StarsCollected.text = str(starcount) + " / " + str(outof)
 
 func on_game_over():
 	$GameOverScreen.visible = true
 
+
 func on_finish_game(stats):
-	$FinishScreen/Stats.text = "Du hast "+ stats["used_jumps"] +" / "+ stats["max_jumps"] +" Versuchen gebraucht."
+	$FinishScreen/Stats.text = "Du hast "+ stats["used_jumps"] +" / "+ stats["max_jumps"] +" Versuche gebraucht."
 	$FinishScreen.visible = true
 	$FinishScreen/StarNode2.set_star_count(stats["stars_collected"], stats["total_stars"])
 

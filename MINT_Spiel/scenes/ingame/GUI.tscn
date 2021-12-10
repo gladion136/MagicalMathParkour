@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/ingame/GUI.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scenes/ingame/StarNode.gd" type="Script" id=5]
 [ext_resource path="res://assets/objects/Star.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/default_border_big.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/ingame/JumpsStats.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ingame/StarsStats.tscn" type="PackedScene" id=9]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -394,49 +396,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="JumpsRemainig" type="Label" parent="."]
+[node name="Stats" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -137.0
-margin_top = 14.0
-margin_right = -13.0
-margin_bottom = 33.0
-custom_fonts/font = ExtResource( 4 )
-text = "Sprünge übrig: 5"
+margin_left = -115.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 132.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StarNode" type="Control" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -30.0
-margin_top = 59.0
-margin_right = -30.0
-margin_bottom = 59.0
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Jumps" parent="Stats" instance=ExtResource( 8 )]
+margin_right = 131.0
 
-[node name="Sprite" type="Sprite" parent="StarNode"]
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 6 )
-
-[node name="StarsCollected" type="Label" parent="StarNode"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -55.0
-margin_top = -9.5
-margin_right = -23.0
-margin_bottom = 9.5
-custom_fonts/font = ExtResource( 4 )
-text = "0 / 2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Stars" parent="Stats" instance=ExtResource( 9 )]
+margin_right = 131.0
 
 [node name="GameOverScreen" type="Control" parent="."]
 visible = false
@@ -542,7 +517,7 @@ margin_right = 279.5
 margin_bottom = 8.5
 grow_vertical = 2
 custom_fonts/font = ExtResource( 2 )
-text = "Du hast 3 / 3 Versuchen gebraucht."
+text = "Du hast 3 / 3 Versuche gebraucht."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

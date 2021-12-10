@@ -93,6 +93,7 @@ func set_current_state(state):
 			function_preview.update()
 		STATE.FLY_UP:
 			camera.follow_player = true
+			gui.set_remaining_jumps_label(jumps_remaining-1)
 			$AnimationPlayer.play("Fly")
 		STATE.FLY:
 			$AnimationPlayer.play("Fly")
@@ -205,7 +206,7 @@ func _move_with_function(delta):
 
 func set_remaining_jumps(jumps):
 	jumps_remaining = jumps
-	gui.set_remaining_jumps_label(jumps)
+	gui.set_remaining_jumps_label(jumps_remaining)
 	if jumps <= 0:
 		game.game_over()
 

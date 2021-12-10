@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/default_border.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/player_placeholder/Jump.png" type="Texture" id=2]
+
+[node name="Jumps" type="HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JumpsRemainig" type="Label" parent="."]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_fonts/font = ExtResource( 1 )
+text = "10 / 10"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jump" type="Sprite" parent="."]
+position = Vector2( 74.2176, 25.8209 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 54.0
+margin_right = 54.0
+margin_bottom = 50.0
