@@ -18,9 +18,5 @@ func _process(delta):
 func _on_Control_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			
-			print("OK1")
-			
 			if $DontDespawn.is_stopped():
 				queue_free()
-				print("OK2")

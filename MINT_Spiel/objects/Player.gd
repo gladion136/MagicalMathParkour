@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const axis_scale = Global.axis_scale
 const FALL_SPEED = 400
-const FLY_SPEED = 800
+const FLY_SPEED = 400
 
 enum MODE {
 	LINEAR,
@@ -47,18 +47,34 @@ func _physics_process(delta):
 				set_current_state(STATE.FLY)
 			else:
 				var velocity = target.normalized() * FLY_SPEED * delta
-				var collider = move_and_collide(velocity)
-				if collider != null:
-					if collider.normal.y > 0 or collider.normal.y < 0:
-						set_current_state(STATE.FALL)
+				var collision = move_and_collide(velocity)
+				if collision != null:
+					if collision.normal.y > 0 or collision.normal.y < 0:
+						check_collision_and_set_state(collision, STATE.FALL)
 		STATE.FLY:
 			_move_with_function(delta)
 		STATE.FALL:
-			var collider = move_and_collide(Vector2(0,delta*FALL_SPEED))
-			if collider != null:
-				if collider.normal.y < 0:
-					set_current_state(STATE.IDLE)
+			var collision = move_and_collide(Vector2(0,delta*FALL_SPEED))
+			if collision != null:
+				if collision.normal.y < 0:
+					check_collision_and_set_state(collision, STATE.IDLE)
 
+
+func check_collision_and_set_state(collision, expected_state):
+	if collision.collider is TileMap:
+		var cell = collision.collider.world_to_map((collision.position - collision.normal)*2)
+		var tileId = collision.collider.get_cellv(cell)
+		match tileId:
+			12: # glibber
+				set_current_state(STATE.IDLE)
+				print("Hang in glibber")
+			13: #spikes
+				game.game_over()
+				print("Game over by spikes")
+			_: # default
+				set_current_state(expected_state)
+	else:
+		set_current_state(expected_state)
 
 """
 	Set current state and update properties to it
@@ -166,22 +182,25 @@ func _move_with_function(delta):
 			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
 			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
-			if move_and_collide(velocity):
-				set_current_state(STATE.FALL)
+			var collision = move_and_collide(velocity)
+			if collision:
+				check_collision_and_set_state(collision, STATE.FALL)
 		MODE.QUAD:
 			var y = a*(b+x_next)*(b+x_next) + c
 			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
 			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
-			if move_and_collide(velocity):
-				set_current_state(STATE.FALL)
+			var collision = move_and_collide(velocity)
+			if collision:
+				check_collision_and_set_state(collision, STATE.FALL)
 		MODE.SIN:
 			var y = a*sin(b*2*PI*(x_next+c))+d
 			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
 			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta
-			if move_and_collide(velocity):
-				set_current_state(STATE.FALL)
+			var collision = move_and_collide(velocity)
+			if collision:
+				check_collision_and_set_state(collision, STATE.FALL)
 
 func set_remaining_jumps(jumps):
 	jumps_remaining = jumps
