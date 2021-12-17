@@ -12,6 +12,7 @@ func _ready():
 	get_node("Island").add_child(new_level)
 	$GUI.level = new_level
 	$GUI.update()
+	$FunctionPreview.init_coordinate_system()
 	
 	# Spawn player
 	player = preload("res://objects/Player.tscn").instance()

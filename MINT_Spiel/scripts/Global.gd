@@ -7,13 +7,16 @@ enum MODE {
 	MULTI
 }
 
+const COORDINATE_SYSTEM_PIXEL_SIZE = 30000
+
 var level_res = ""
 var level_name = ""
 var mode = MODE.LINEAR
+var axis_scale = 150
+var COORDINATE_SYSTEM_SIZE = COORDINATE_SYSTEM_PIXEL_SIZE / axis_scale
 
-const COORDINATE_SYSTEM_SIZE = 200
+
 const axis_label_length = 10
-const axis_scale = 150
 const stroke_width = 20
 
 # stores levels of current mode
@@ -81,3 +84,7 @@ func start_level(mode, level):
 	Global.level_name = calc_name_from_res(level)
 	Global.mode = mode
 	get_tree().change_scene("res://scenes/InGame.tscn")
+	
+func set_axis_scale(ax_sc):
+	axis_scale = ax_sc
+	COORDINATE_SYSTEM_SIZE = COORDINATE_SYSTEM_PIXEL_SIZE / axis_scale

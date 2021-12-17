@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-const axis_scale = Global.axis_scale
 const FALL_SPEED = 400
 const FLY_SPEED = 400
 
@@ -18,6 +17,7 @@ enum STATE {
 	FREEZE
 }
 
+var axis_scale = 0
 var current_state = STATE.FALL
 var current_mode = MODE.LINEAR
 var a = 0
@@ -34,6 +34,7 @@ var camera
 
 
 func _ready():
+	axis_scale = Global.axis_scale
 	$AnimationPlayer.play("Idle")
 	move_with_coordinate_system(position)
 
@@ -172,12 +173,13 @@ func jump_sin(a, b, c, d, left):
 	Move the player along the current function
 """
 func _move_with_function(delta):
+	print(str(axis_scale))
 	var x_cur = (self.position.x - Global.coordinate_system_center.x) / axis_scale
 	var x_next = x_cur
 	if invert:
-		x_next -= FLY_SPEED / axis_scale * delta
+		x_next -= 1.0 * FLY_SPEED / axis_scale * delta
 	else:
-		x_next += FLY_SPEED / axis_scale * delta
+		x_next += 1.0 * FLY_SPEED / axis_scale * delta
 	match current_mode:
 		MODE.LINEAR:
 			var y = (a*x_next) + b

@@ -5,7 +5,7 @@ const COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
 
 const axis_label_length = Global.axis_label_length
 
-const axis_scale = Global.axis_scale
+var axis_scale = 0
 
 const stroke_width = Global.stroke_width
 
@@ -18,6 +18,7 @@ var y_axis_array = []
 
 func _ready():
 	if Engine.editor_hint:
+		axis_scale = get_parent().axis_scale
 		# y-axis numbers
 		for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
 			if i != 0:
