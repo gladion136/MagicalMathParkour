@@ -16,6 +16,8 @@ const axis_label_length = 10
 const axis_scale = 150
 const stroke_width = 20
 
+# stores levels of current mode
+var current_level_list = []
 
 var coordinate_system_center = Vector2.ZERO
 
@@ -67,3 +69,15 @@ func load_game_data():
 		return
 	save_game.open(filename, File.READ)
 	game_data = parse_json(save_game.get_as_text())
+
+
+func calc_name_from_res(level):
+	return level.replace(".tscn", "").replace("_" ," ")
+
+
+func start_level(mode, level):
+	print("Start level: " + level)
+	Global.level_res = level
+	Global.level_name = calc_name_from_res(level)
+	Global.mode = mode
+	get_tree().change_scene("res://scenes/InGame.tscn")

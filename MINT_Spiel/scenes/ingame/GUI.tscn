@@ -586,16 +586,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TryAgainBtn" type="Button" parent="FinishScreen/VBoxContainer"]
+[node name="NextLevel" type="Button" parent="FinishScreen/VBoxContainer"]
 margin_right = 189.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 2 )
-text = "Erneut Versuchen"
+text = "Nächstes Level"
 
-[node name="BackToMenuBtn" type="Button" parent="FinishScreen/VBoxContainer"]
+[node name="TryAgainBtn" type="Button" parent="FinishScreen/VBoxContainer"]
 margin_top = 29.0
 margin_right = 189.0
 margin_bottom = 54.0
+custom_fonts/font = ExtResource( 2 )
+text = "Erneut Spielen"
+
+[node name="BackToMenuBtn" type="Button" parent="FinishScreen/VBoxContainer"]
+margin_top = 58.0
+margin_right = 189.0
+margin_bottom = 83.0
 custom_fonts/font = ExtResource( 2 )
 text = "Zurück zum Hautmenü"
 __meta__ = {
@@ -663,5 +670,6 @@ __meta__ = {
 [connection signal="pressed" from="Control/Sin/BtnJumpR" to="." method="_on_BtnJumpR_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="FinishScreen/VBoxContainer/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="FinishScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
 [connection signal="pressed" from="FinishScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]

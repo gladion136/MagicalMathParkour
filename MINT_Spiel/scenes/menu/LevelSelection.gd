@@ -27,6 +27,7 @@ func on_open():
 	levels = list_files_in_directory("res://level/")
 	levels.sort()
 	print(levels)
+	Global.current_level_list = []
 	for i in range(levels.size()):
 		var level = levels[i]
 		var create = false
@@ -40,10 +41,11 @@ func on_open():
 			create = true
 		
 		if create:
+			Global.current_level_list.append(level)
 			var vbox = VBoxContainer.new()
 			# Label
 			var label_name = Label.new()
-			var level_name = level.replace(".tscn", "").replace("_" ," ")
+			var level_name = Global.calc_name_from_res(level)
 			label_name.align = HALIGN_CENTER
 			label_name.text = level_name
 			label_name.add_font_override("font", font)
@@ -60,7 +62,7 @@ func on_open():
 			viewport_c.rect_size = Vector2(1024, 600)
 			viewport_c.rect_scale = Vector2(0.2,0.2)
 			viewport_c.add_child(viewport)
-			viewport_c.connect("gui_input", self, "gui_input_viewport",[level, level_name])
+			viewport_c.connect("gui_input", self, "gui_input_viewport",[level])
 			var level_instance = load("res://level/"+level).instance()
 			viewport.add_child(level_instance)
 			
@@ -114,14 +116,6 @@ func _on_Button_pressed():
 	main.select_menu(main.MENU.MAIN)
 
 
-func start_level(level, name):
-	print("Start level: " + level)
-	Global.level_res = level
-	Global.level_name = name
-	Global.mode = main.current_mode
-	get_tree().change_scene("res://scenes/InGame.tscn")
-
-
-func gui_input_viewport(event, level, level_name):
+func gui_input_viewport(event, level):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		start_level(level, level_name)
+		Global.start_level(main.current_mode, level)
