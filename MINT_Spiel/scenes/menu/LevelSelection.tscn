@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/menu/LevelSelection.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/ingame/JumpsStats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ingame/StarsStats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/home.png" type="Texture" id=5]
+[ext_resource path="res://assets/BG.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="LevelSelection" type="Control"]
 anchor_right = 1.0
@@ -15,6 +27,16 @@ __meta__ = {
 font = ExtResource( 2 )
 jump_stats_scene = ExtResource( 3 )
 star_stats_scene = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_left = 0.5
@@ -38,8 +60,14 @@ margin_left = 8.90897
 margin_top = 8.90898
 margin_right = 108.909
 margin_bottom = 28.909
+rect_scale = Vector2( 0.1, 0.1 )
 custom_fonts/font = ExtResource( 2 )
-text = "Zurück zum Hauptmenü"
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+icon = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
