@@ -1,7 +1,7 @@
 tool
 extends CanvasItem
 
-const COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
+var COORDINATE_SYSTEM_SIZE = 0
 
 const axis_label_length = Global.axis_label_length
 
@@ -18,6 +18,7 @@ var y_axis_array = []
 
 func _ready():
 	if Engine.editor_hint:
+		COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
 		axis_scale = get_parent().axis_scale
 		# y-axis numbers
 		for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):

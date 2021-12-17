@@ -173,7 +173,6 @@ func jump_sin(a, b, c, d, left):
 	Move the player along the current function
 """
 func _move_with_function(delta):
-	print(str(axis_scale))
 	var x_cur = (self.position.x - Global.coordinate_system_center.x) / axis_scale
 	var x_next = x_cur
 	if invert:
