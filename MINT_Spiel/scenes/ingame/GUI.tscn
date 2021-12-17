@@ -690,6 +690,7 @@ text = "Level NAME"
 align = 1
 
 [node name="HowToPlay" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -294, 187 )
@@ -727,6 +728,7 @@ __meta__ = {
 [node name="Flag" parent="HowToPlay/VBoxContainer" instance=ExtResource( 12 )]
 position = Vector2( 163, 72 )
 scale = Vector2( 2, 2 )
+collect_able = false
 
 [node name="Label3" type="Label" parent="HowToPlay/VBoxContainer"]
 margin_top = 154.0
@@ -852,14 +854,15 @@ __meta__ = {
 
 [node name="Star" parent="HowToPlay/VBoxContainer2" instance=ExtResource( 16 )]
 position = Vector2( 168, 513 )
+collect_able = false
 
-[node name="Node" type="Node" parent="HowToPlay/VBoxContainer2"]
+[node name="Node" type="Node2D" parent="HowToPlay/VBoxContainer2"]
 
 [node name="Jumps" parent="HowToPlay/VBoxContainer2/Node" instance=ExtResource( 8 )]
-margin_left = 697.0
-margin_top = 107.0
-margin_right = 814.0
-margin_bottom = 157.0
+margin_left = 116.176
+margin_top = 79.2817
+margin_right = 233.176
+margin_bottom = 129.282
 
 [node name="Button" type="Button" parent="HowToPlay"]
 anchor_left = 1.0
