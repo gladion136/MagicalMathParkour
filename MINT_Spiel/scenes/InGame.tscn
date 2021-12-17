@@ -8,11 +8,11 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasItem
 
-const COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
+var COORDINATE_SYSTEM_SIZE = 0
 
 const axis_label_length = Global.axis_label_length
 
-const axis_scale = Global.axis_scale
+var axis_scale = 0
 
 const stroke_width = Global.stroke_width
 
@@ -36,8 +36,9 @@ var b = 0
 var c = 0
 var d = 0
 
-
-func _ready():
+func init_coordinate_system():
+	axis_scale = Global.axis_scale
+	COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
 	# y-axis numbers
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
 		if i != 0:

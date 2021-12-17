@@ -9,9 +9,11 @@ enum MODE {
 }
 
 export(int) var amount_jumps = 3
+export(int) var axis_scale = 150
 var star_count = 0
 
 func _ready():
+	Global.set_axis_scale(axis_scale)
 	count_stars()
 
 

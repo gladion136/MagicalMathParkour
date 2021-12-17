@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/menu/quad.png" type="Texture" id=4]
 [ext_resource path="res://assets/menu/linear.png" type="Texture" id=5]
 
-
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
