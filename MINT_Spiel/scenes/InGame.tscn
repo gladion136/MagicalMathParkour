@@ -77,7 +77,7 @@ func _ready():
 		y_axis_array.append(Vector2(0, axis_scale*i))
 		y_axis_array.append(Vector2(-axis_label_length, axis_scale*i))
 		y_axis_array.append(Vector2(axis_label_length, axis_scale*i))
-	
+
 
 func set_new_pos(pos):
 	old_pos = self.position

@@ -233,3 +233,16 @@ func parse_input(input_text):
 		else:
 			return null
 	return float(input_text)
+
+
+func _on_NextLevel_pressed():
+	var i = 0
+	for level in Global.current_level_list:
+		i += 1
+		if level == Global.level_res:
+			if i < Global.current_level_list.size():
+				Global.start_level(Global.mode, Global.current_level_list[i])
+				return
+			else:
+				Global.start_level(Global.mode, Global.current_level_list[0])
+				return
