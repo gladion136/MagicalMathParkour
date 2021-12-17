@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Attack2.png-02a448bbd341a352dc8f670c864163e6.stex"
+path="res://.import/Fall.png-752d7b8fa1b1072ab945fb98960c0136.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_placeholder/Attack2.png"
-dest_files=[ "res://.import/Attack2.png-02a448bbd341a352dc8f670c864163e6.stex" ]
+source_file="res://assets/character/Fall.png"
+dest_files=[ "res://.import/Fall.png-752d7b8fa1b1072ab945fb98960c0136.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

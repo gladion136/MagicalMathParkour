@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Death.png-05bd494402314150c0ac386bf70c0f6c.stex"
+path="res://.import/Jump.png-83f4717c9c174ad9db5fccfd6bd4ea06.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_placeholder/Death.png"
-dest_files=[ "res://.import/Death.png-05bd494402314150c0ac386bf70c0f6c.stex" ]
+source_file="res://assets/character/Jump.png"
+dest_files=[ "res://.import/Jump.png-83f4717c9c174ad9db5fccfd6bd4ea06.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

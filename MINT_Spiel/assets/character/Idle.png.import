@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Jump.png-2ea9dd00ddff5b014212f62cea387f60.stex"
+path="res://.import/Idle.png-ebda86f909b599813f4f2694c1c2248b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_placeholder/Jump.png"
-dest_files=[ "res://.import/Jump.png-2ea9dd00ddff5b014212f62cea387f60.stex" ]
+source_file="res://assets/character/Idle.png"
+dest_files=[ "res://.import/Idle.png-ebda86f909b599813f4f2694c1c2248b.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

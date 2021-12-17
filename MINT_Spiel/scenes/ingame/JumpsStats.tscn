@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/fonts/default_border.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/player_placeholder/Jump.png" type="Texture" id=2]
+[ext_resource path="res://assets/character/Jump.png" type="Texture" id=2]
 
 [node name="Jumps" type="HBoxContainer"]
 margin_right = 100.0
