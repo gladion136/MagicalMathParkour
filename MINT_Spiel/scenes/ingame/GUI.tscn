@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/ingame/GUI.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/default.tres" type="DynamicFont" id=2]
@@ -12,7 +12,11 @@
 [ext_resource path="res://assets/reload.png" type="Texture" id=10]
 [ext_resource path="res://assets/home.png" type="Texture" id=11]
 [ext_resource path="res://objects/flag.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/placeholder.png" type="Texture" id=13]
+[ext_resource path="res://assets/preview.webm" type="VideoStream" id=13]
+[ext_resource path="res://assets/open-book.png" type="Texture" id=14]
+[ext_resource path="res://assets/PointExplanation.png" type="Texture" id=15]
+[ext_resource path="res://objects/Star.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scripts/Videoplayer.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
@@ -35,6 +39,16 @@
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -60,9 +74,9 @@ __meta__ = {
 [node name="TryAgainBtn" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
 margin_left = 69.0
-margin_top = 9.0
+margin_top = 8.0
 margin_right = 581.0
-margin_bottom = 521.0
+margin_bottom = 520.0
 rect_scale = Vector2( 0.1, 0.1 )
 theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
@@ -77,12 +91,20 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="."]
-margin_left = 160.0
-margin_top = 8.0
-margin_right = 246.0
-margin_bottom = 33.0
+modulate = Color( 1, 1, 1, 0.784314 )
+margin_left = 134.0
+margin_top = 9.0
+margin_right = 722.0
+margin_bottom = 521.0
+rect_scale = Vector2( 0.1, 0.1 )
 custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
 text = "Anleitung"
+icon = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -453,7 +475,7 @@ margin_left = -162.0
 margin_top = -14.0
 margin_right = 24.0
 margin_bottom = 5.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 4 )
 text = "Fehlerhafte Eingabe"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -668,7 +690,6 @@ text = "Level NAME"
 align = 1
 
 [node name="HowToPlay" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -294, 187 )
@@ -694,24 +715,23 @@ __meta__ = {
 }
 
 [node name="Label6" type="Label" parent="HowToPlay/VBoxContainer"]
-margin_right = 496.0
-margin_bottom = 130.0
-rect_min_size = Vector2( 0, 130 )
+margin_right = 467.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
 custom_fonts/font = ExtResource( 4 )
 text = "Ziel des Spiels ist es die Fahne zu erreichen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Flag" parent="HowToPlay/VBoxContainer" instance=ExtResource( 9 )]
-margin_top = 134.0
-margin_right = 496.0
-margin_bottom = 184.0
+[node name="Flag" parent="HowToPlay/VBoxContainer" instance=ExtResource( 12 )]
+position = Vector2( 163, 72 )
+scale = Vector2( 2, 2 )
 
 [node name="Label3" type="Label" parent="HowToPlay/VBoxContainer"]
-margin_top = 188.0
-margin_right = 496.0
-margin_bottom = 229.0
+margin_top = 154.0
+margin_right = 467.0
+margin_bottom = 195.0
 custom_fonts/font = ExtResource( 4 )
 text = "Gebe die gewünschte Funktion über die Textfelder ein.
 Beispiel Eingaben:"
@@ -720,9 +740,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HowToPlay/VBoxContainer"]
-margin_top = 233.0
-margin_right = 496.0
-margin_bottom = 262.0
+margin_top = 199.0
+margin_right = 467.0
+margin_bottom = 228.0
 
 [node name="LineEdit" type="LineEdit" parent="HowToPlay/VBoxContainer/HBoxContainer"]
 margin_right = 58.0
@@ -748,9 +768,9 @@ text = "3.14"
 editable = false
 
 [node name="Label4" type="Label" parent="HowToPlay/VBoxContainer"]
-margin_top = 266.0
-margin_right = 496.0
-margin_bottom = 351.0
+margin_top = 232.0
+margin_right = 467.0
+margin_bottom = 317.0
 custom_fonts/font = ExtResource( 4 )
 text = "
 Wenn du auf einen der Sprung Buttons klickst, bewegt sich
@@ -760,33 +780,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HowToPlay/VBoxContainer"]
-margin_top = 355.0
-margin_right = 496.0
-margin_bottom = 505.0
-rect_min_size = Vector2( 160, 150 )
-expand = true
-stretch_mode = 1
-
-[node name="Label5" type="Label" parent="HowToPlay/VBoxContainer"]
-margin_top = 509.0
-margin_right = 496.0
-margin_bottom = 550.0
-custom_fonts/font = ExtResource( 4 )
-text = "Dir stehen nur eine begrenzte Anzahl an Sprüngen zur Verfügung.
-Erreiche das Ziel, bevor dir die Sprünge ausgehen."
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect2" type="TextureRect" parent="HowToPlay/VBoxContainer"]
-margin_top = 554.0
-margin_right = 496.0
-margin_bottom = 584.0
-rect_min_size = Vector2( 200, 30 )
-texture = ExtResource( 13 )
-expand = true
-stretch_mode = 5
+[node name="VideoPlayer" type="VideoPlayer" parent="HowToPlay/VBoxContainer"]
+margin_top = 321.0
+margin_right = 450.0
+margin_bottom = 559.0
+rect_min_size = Vector2( 450, 238 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+stream = ExtResource( 13 )
+autoplay = true
+script = ExtResource( 17 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HowToPlay"]
 anchor_left = 1.0
@@ -798,9 +801,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label7" type="Label" parent="HowToPlay/VBoxContainer2"]
+[node name="Label5" type="Label" parent="HowToPlay/VBoxContainer2"]
 margin_right = 452.0
-margin_bottom = 100.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 140 )
+custom_fonts/font = ExtResource( 4 )
+text = "Dir stehen nur eine begrenzte Anzahl an Sprüngen zur
+ Verfügung.
+Erreiche das Ziel, bevor dir die Sprünge ausgehen."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="HowToPlay/VBoxContainer2"]
+margin_top = 144.0
+margin_right = 452.0
+margin_bottom = 244.0
 rect_min_size = Vector2( 0, 100 )
 custom_fonts/font = ExtResource( 4 )
 text = "Halte die rechte Maustaste gedrückt und ziehe um die 
@@ -811,29 +827,22 @@ __meta__ = {
 }
 
 [node name="Label8" type="Label" parent="HowToPlay/VBoxContainer2"]
-margin_top = 104.0
+margin_top = 248.0
 margin_right = 452.0
-margin_bottom = 145.0
+margin_bottom = 418.0
+rect_min_size = Vector2( 0, 170 )
 custom_fonts/font = ExtResource( 4 )
 text = "Mit der linken Maustaste kannst du Punkte platzieren
-und die genauen Koordinaten ablesen"
+und die genauen Koordinaten ablesen. Mit einem weiteren
+Klick kannst du den Punkt wieder entfernen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="HowToPlay/VBoxContainer2"]
-margin_top = 149.0
-margin_right = 452.0
-margin_bottom = 249.0
-rect_min_size = Vector2( 100, 100 )
-texture = ExtResource( 13 )
-expand = true
-stretch_mode = 5
-
 [node name="Label9" type="Label" parent="HowToPlay/VBoxContainer2"]
-margin_top = 253.0
+margin_top = 422.0
 margin_right = 452.0
-margin_bottom = 294.0
+margin_bottom = 463.0
 custom_fonts/font = ExtResource( 4 )
 text = "Wenn du eine Herausforderung suchst, kannst du die 
 Sterne auf dem Weg zum Ziel einsammeln."
@@ -841,8 +850,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star" parent="HowToPlay/VBoxContainer2" instance=ExtResource( 12 )]
-position = Vector2( 190, 339 )
+[node name="Star" parent="HowToPlay/VBoxContainer2" instance=ExtResource( 16 )]
+position = Vector2( 168, 513 )
+
+[node name="Node" type="Node" parent="HowToPlay/VBoxContainer2"]
+
+[node name="Jumps" parent="HowToPlay/VBoxContainer2/Node" instance=ExtResource( 8 )]
+margin_left = 697.0
+margin_top = 107.0
+margin_right = 814.0
+margin_bottom = 157.0
 
 [node name="Button" type="Button" parent="HowToPlay"]
 anchor_left = 1.0
@@ -858,6 +875,11 @@ text = "Schließen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="HowToPlay"]
+position = Vector2( 745, 389 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 15 )
 
 [connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
@@ -876,4 +898,5 @@ __meta__ = {
 [connection signal="pressed" from="FinishScreen/VBoxContainer/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="FinishScreen/VBoxContainer/TryAgainBtn" to="." method="_on_TryAgainBtn_pressed"]
 [connection signal="pressed" from="FinishScreen/VBoxContainer/BackToMenuBtn" to="." method="_on_BtnBack_pressed"]
+[connection signal="finished" from="HowToPlay/VBoxContainer/VideoPlayer" to="HowToPlay/VBoxContainer/VideoPlayer" method="_on_VideoPlayer_finished"]
 [connection signal="pressed" from="HowToPlay/Button" to="." method="_on_close_tutorial_button_pressed"]
