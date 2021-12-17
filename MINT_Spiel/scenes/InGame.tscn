@@ -5,7 +5,6 @@
 [ext_resource path="res://scenes/InGame.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/default_border.tres" type="DynamicFont" id=4]
 
-
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasItem
 
@@ -49,7 +48,7 @@ func _ready():
 			#label.anchor_right = 0.5
 			label.set_position(Vector2(-65, -axis_scale*i - 10))
 			label.add_font_override(\"font\", font)
-			label.modulate = Color(1,1,1,0.7)
+			label.modulate = Color(1,1,1,1)
 			label.text = str(i)
 			add_child(label)
 	# x-axis numbers
@@ -62,7 +61,7 @@ func _ready():
 			#label.anchor_right = 0.5
 			label.set_position(Vector2(-25 + axis_scale*i, +10))
 			label.add_font_override(\"font\", font)
-			label.modulate = Color(1,1,1,0.7)
+			label.modulate = Color(1,1,1,1)
 			label.text = str(i)
 			add_child(label)
 	# x-axis
