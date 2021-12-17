@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/menu/mix.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/big_title.tres" type="DynamicFont" id=7]
 
-
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
