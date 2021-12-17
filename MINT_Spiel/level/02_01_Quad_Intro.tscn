@@ -13,7 +13,6 @@ __meta__ = {
 "_edit_vertical_guides_": [ 3595.5, -207.636 ]
 }
 amount_jumps = 4
-current_mode = 1
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 457.982, 279.692 )

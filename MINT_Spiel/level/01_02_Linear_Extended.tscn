@@ -13,7 +13,6 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 803.234, -263.561 ],
 "_edit_vertical_guides_": [ 3595.5, -207.636 ]
 }
-amount_jumps = 4
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 457.982, 279.692 )
@@ -42,8 +41,9 @@ tile_data = PoolIntArray( -262148, 0, 0, -262147, 0, 1, -262146, 0, 1, -262145, 
 position = Vector2( -4.45602, 604.138 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 339.036, 451.541 )
+position = Vector2( 1154.54, 338.276 )
 current = true
+zoom = Vector2( 1.5, 1.5 )
 limit_left = -200
 limit_top = -260
 limit_right = 3600
@@ -54,7 +54,7 @@ script = ExtResource( 5 )
 position = Vector2( 1708.33, 619.202 )
 
 [node name="Star" parent="." instance=ExtResource( 6 )]
-position = Vector2( 335, 497 )
+position = Vector2( 935.037, 136.66 )
 
 [node name="Star2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1695, 401 )
