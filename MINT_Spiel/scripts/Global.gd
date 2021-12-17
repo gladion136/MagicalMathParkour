@@ -78,6 +78,6 @@ func calc_name_from_res(level):
 func start_level(mode, level):
 	print("Start level: " + level)
 	Global.level_res = level
-	Global.level_name = calc_name_from_res(name)
+	Global.level_name = calc_name_from_res(level)
 	Global.mode = mode
 	get_tree().change_scene("res://scenes/InGame.tscn")

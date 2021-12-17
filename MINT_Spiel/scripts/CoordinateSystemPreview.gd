@@ -41,7 +41,6 @@ func _ready():
 				#label.anchor_right = 0.5
 				label.set_position(Vector2(-25 + axis_scale*i, +10))
 				label.add_font_override("font", font)
-				label.modulate = Color(1,1,1,0.7)
 				label.text = str(i)
 				add_child(label)
 		# x-axis
