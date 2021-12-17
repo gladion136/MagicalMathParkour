@@ -246,3 +246,9 @@ func _on_NextLevel_pressed():
 			else:
 				Global.start_level(Global.mode, Global.current_level_list[0])
 				return
+	
+func _on_tutorial_button_pressed():
+	$HowToPlay.visible = true
+
+func _on_close_tutorial_button_pressed():
+	$HowToPlay.visible = false
