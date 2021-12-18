@@ -96,7 +96,7 @@ func draw_linear(a, b):
 func draw_quad(a, b, c):
 	current_mode = MODE.QUAD
 	self.a = -a
-	self.b = -b
+	self.b = b
 	self.c = -c
 	update()
 
@@ -136,6 +136,7 @@ func _draw():
 				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 					var x = float(i) / axis_scale
 					var y = a*sin(b*2*PI*(x+c))+d
+					print(c)
 					var on_map = Vector2(x * axis_scale, y * axis_scale)
 					vector_array.append(on_map)
 				last_vector_array = vector_array
