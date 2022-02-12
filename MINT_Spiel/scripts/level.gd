@@ -10,10 +10,12 @@ enum MODE {
 
 export(int) var amount_jumps = 3
 export(int) var axis_scale = 150
+export(bool) var pi_labeled_coordinate_system = false
 var star_count = 0
 
 func _ready():
 	Global.set_axis_scale(axis_scale)
+	Global.set_pi_labeled_coordinate_system(pi_labeled_coordinate_system)
 	count_stars()
 
 

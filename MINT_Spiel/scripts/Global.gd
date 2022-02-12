@@ -7,13 +7,14 @@ enum MODE {
 	MULTI
 }
 
-const COORDINATE_SYSTEM_PIXEL_SIZE = 30000
+const COORDINATE_SYSTEM_PIXEL_SIZE = 15000
 
 var level_res = ""
 var level_name = ""
 var mode = MODE.LINEAR
 var axis_scale = 150
 var COORDINATE_SYSTEM_SIZE = COORDINATE_SYSTEM_PIXEL_SIZE / axis_scale
+var pi_labeled_coordinate_system
 
 
 const axis_label_length = 10
@@ -88,3 +89,6 @@ func start_level(mode, level):
 func set_axis_scale(ax_sc):
 	axis_scale = ax_sc
 	COORDINATE_SYSTEM_SIZE = COORDINATE_SYSTEM_PIXEL_SIZE / axis_scale
+
+func set_pi_labeled_coordinate_system(on_or_off):
+	pi_labeled_coordinate_system = on_or_off;

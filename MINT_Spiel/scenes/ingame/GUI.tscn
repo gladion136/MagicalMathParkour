@@ -259,7 +259,7 @@ text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Quad"]
 margin_left = 34.0
-margin_right = 92.0
+margin_right = 124.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
@@ -273,16 +273,16 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Control/Quad"]
-margin_left = 96.0
+margin_left = 128.0
 margin_top = 10.0
-margin_right = 125.0
+margin_right = 156.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = "*(x +"
+text = "∙(x +"
 
 [node name="B" type="LineEdit" parent="Control/Quad"]
-margin_left = 129.0
-margin_right = 187.0
+margin_left = 160.0
+margin_right = 250.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
@@ -296,16 +296,16 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Control/Quad"]
-margin_left = 191.0
+margin_left = 254.0
 margin_top = 10.0
-margin_right = 213.0
+margin_right = 276.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
 text = ")² +"
 
 [node name="C" type="LineEdit" parent="Control/Quad"]
-margin_left = 217.0
-margin_right = 275.0
+margin_left = 280.0
+margin_right = 370.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
@@ -319,8 +319,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Quad"]
-margin_left = 279.0
-margin_right = 391.0
+margin_left = 374.0
+margin_right = 486.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -330,8 +330,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Quad"]
-margin_left = 395.0
-margin_right = 520.0
+margin_left = 490.0
+margin_right = 615.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -362,7 +362,7 @@ text = "f(x)="
 
 [node name="A" type="LineEdit" parent="Control/Sin"]
 margin_left = 34.0
-margin_right = 92.0
+margin_right = 124.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
@@ -376,16 +376,16 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Control/Sin"]
-margin_left = 96.0
+margin_left = 128.0
 margin_top = 10.0
-margin_right = 161.0
+margin_right = 162.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = "*sin(2*PI*"
+text = "∙ sin("
 
 [node name="B" type="LineEdit" parent="Control/Sin"]
-margin_left = 165.0
-margin_right = 223.0
+margin_left = 166.0
+margin_right = 256.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
@@ -399,16 +399,16 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="Control/Sin"]
-margin_left = 227.0
+margin_left = 260.0
 margin_top = 10.0
-margin_right = 251.0
+margin_right = 287.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = "*x +"
+text = "∙ x +"
 
 [node name="C" type="LineEdit" parent="Control/Sin"]
-margin_left = 255.0
-margin_right = 313.0
+margin_left = 291.0
+margin_right = 381.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
@@ -422,22 +422,22 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Control/Sin"]
-margin_left = 317.0
+margin_left = 385.0
 margin_top = 10.0
-margin_right = 333.0
+margin_right = 420.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 2 )
-text = ") +"
+text = "∙ π) +"
 
 [node name="D" type="LineEdit" parent="Control/Sin"]
-margin_left = 337.0
-margin_right = 395.0
+margin_left = 424.0
+margin_right = 514.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 90, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
-text = "2"
+text = "0"
 caret_blink = true
 caret_blink_speed = 0.5
 __meta__ = {
@@ -445,8 +445,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpL" type="Button" parent="Control/Sin"]
-margin_left = 399.0
-margin_right = 511.0
+margin_left = 518.0
+margin_right = 630.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -456,8 +456,8 @@ __meta__ = {
 }
 
 [node name="BtnJumpR" type="Button" parent="Control/Sin"]
-margin_left = 515.0
-margin_right = 640.0
+margin_left = 634.0
+margin_right = 759.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )

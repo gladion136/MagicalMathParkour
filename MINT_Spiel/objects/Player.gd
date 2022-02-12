@@ -18,6 +18,7 @@ enum STATE {
 }
 
 var axis_scale = 0
+var pi_labeled_coordinate_system
 var current_state = STATE.FALL
 var current_mode = MODE.LINEAR
 var a = 0
@@ -35,6 +36,7 @@ var camera
 
 func _ready():
 	axis_scale = Global.axis_scale
+	pi_labeled_coordinate_system = Global.pi_labeled_coordinate_system
 	$AnimationPlayer.play("Idle")
 	move_with_coordinate_system(position)
 
@@ -162,7 +164,7 @@ func jump_sin(a, b, c, d, left):
 		self.b = b
 		self.c = c
 		self.d = -d
-		self.y_zero = self.a*sin(self.b*2*PI*self.c)+self.d
+		self.y_zero = self.a*sin(self.c*PI)+self.d
 		$Sprite.flip_h = left
 		invert = left
 		current_mode = MODE.SIN
@@ -197,7 +199,11 @@ func _move_with_function(delta):
 			if collision:
 				check_collision_and_set_state(collision, STATE.FALL)
 		MODE.SIN:
-			var y = a*sin(b*2*PI*(x_next+c))+d
+			var y
+			if pi_labeled_coordinate_system:
+				y = a*sin(b*x_next*PI/2+c*PI)+d
+			else:
+				y = a*sin(b*x_next+c*PI)+d
 			var y_n = y * axis_scale + Global.coordinate_system_center.y - 1
 			var x_n = x_next * axis_scale + Global.coordinate_system_center.x
 			var velocity = Vector2(x_n - self.position.x, y_n - self.position.y).normalized() * FLY_SPEED * delta

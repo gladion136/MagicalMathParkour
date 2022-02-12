@@ -13,6 +13,7 @@ var COORDINATE_SYSTEM_SIZE = 0
 const axis_label_length = Global.axis_label_length
 
 var axis_scale = 0
+var pi_labeled_coordinate_system
 
 const stroke_width = Global.stroke_width
 
@@ -38,9 +39,10 @@ var d = 0
 
 func init_coordinate_system():
 	axis_scale = Global.axis_scale
+	pi_labeled_coordinate_system = Global.pi_labeled_coordinate_system
 	COORDINATE_SYSTEM_SIZE = Global.COORDINATE_SYSTEM_SIZE
 	# y-axis numbers
-	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
+	for i in range(-COORDINATE_SYSTEM_SIZE/2, COORDINATE_SYSTEM_SIZE/2):
 		if i != 0:
 			var label = Label.new()
 			label.rect_min_size = Vector2(50,20)
@@ -63,7 +65,15 @@ func init_coordinate_system():
 			label.set_position(Vector2(-25 + axis_scale*i, +10))
 			label.add_font_override(\"font\", font)
 			label.modulate = Color(1,1,1,1)
-			label.text = str(i)
+			if (pi_labeled_coordinate_system):
+				if i%2 == 1 or i%2 == -1:
+					label.text = str(i) +\"/2 π\"
+				elif i == 2:
+					label.text = \"π\"
+				else:
+					label.text = str(i/2) + \"π\"
+			else:
+				label.text = str(i)
 			add_child(label)
 	# x-axis
 	for i in range(-COORDINATE_SYSTEM_SIZE, COORDINATE_SYSTEM_SIZE):
@@ -135,7 +145,11 @@ func _draw():
 			if vector_array.empty():
 				for i in range(-COORDINATE_SYSTEM_SIZE * axis_scale, COORDINATE_SYSTEM_SIZE * axis_scale):
 					var x = float(i) / axis_scale
-					var y = a*sin(b*2*PI*(x+c))+d
+					var y
+					if pi_labeled_coordinate_system:
+						y = a*sin(b*(x*PI/2)+c*PI)+d
+					else:
+						y = a*sin(b*x+c*PI)+d
 					var on_map = Vector2(x * axis_scale, y * axis_scale)
 					vector_array.append(on_map)
 				last_vector_array = vector_array
