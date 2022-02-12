@@ -145,7 +145,7 @@ func jump_quad(a, b, c, left):
 	if current_state == STATE.IDLE:
 		print("Jump quad")
 		self.a = -a
-		self.b = -b
+		self.b = b
 		self.c = -c
 		self.y_zero = self.a*(self.b)*(self.b) + self.c
 		$Sprite.flip_h = left

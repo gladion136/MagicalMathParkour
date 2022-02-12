@@ -106,7 +106,7 @@ func draw_linear(a, b):
 func draw_quad(a, b, c):
 	current_mode = MODE.QUAD
 	self.a = -a
-	self.b = -b
+	self.b = b
 	self.c = -c
 	update()
 
