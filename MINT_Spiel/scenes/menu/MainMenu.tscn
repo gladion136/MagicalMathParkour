@@ -98,7 +98,7 @@ margin_top = -248.5
 margin_right = 441.0
 margin_bottom = -151.5
 custom_fonts/font = ExtResource( 7 )
-text = "Magical math parcour"
+text = "Magical math parkour"
 __meta__ = {
 "_edit_use_anchors_": false
 }

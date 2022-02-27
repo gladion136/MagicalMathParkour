@@ -51,10 +51,13 @@ limit_bottom = 800
 script = ExtResource( 5 )
 
 [node name="Flag" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1708.33, 619.202 )
+position = Vector2( 1780.33, 619.202 )
 
 [node name="Star" parent="." instance=ExtResource( 6 )]
 position = Vector2( 935.037, 136.66 )
 
+[node name="Star3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 207.037, 96.66 )
+
 [node name="Star2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1695, 401 )
+position = Vector2( 1783, 401 )
