@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Magical math parcour"
+config/name="Magical math parkour"
 run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://assets/icon.png"
 
