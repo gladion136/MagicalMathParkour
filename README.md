@@ -9,6 +9,8 @@ Autoren:
 - Jan Lüking
 - David Schelinski
 
+[Download für Linux und Windows](https://nextcloud.schmidt-systems.eu/s/AZYpYmYnFKrzeaq)
+
 # Screenshots
 
 ## Tutorial
